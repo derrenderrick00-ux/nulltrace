@@ -1,4 +1,4 @@
-"""Pygame-CE desktop UI for NULLTRACE education v1.2.0-rc1.
+"""Pygame-CE desktop UI for NULLTRACE v1.5.0-rc1 (education + cinematic investigations).
 
 No game action launches an unrestricted shell command. Real labs are explicit,
 loopback-only or offline, and isolated from simulated terminal input.
@@ -17,6 +17,10 @@ from nulltrace.labs.practical import LAB_MISSIONS,run_lab
 from nulltrace.network.simulator import HOSTS,route
 from nulltrace.ui.operator_animation import draw_operator, advance_position
 from nulltrace.story.endings import resolve_ending
+from nulltrace.cinematics.timeline import CinematicLibrary, Timeline
+from nulltrace.cinematics.sets import draw_set
+from nulltrace.investigations.casebook import Casebook, CaseSession
+from nulltrace.network.journey import PacketJourney
 
 WIDTH,HEIGHT=1180,720
 BG=(7,14,26);PANEL=(14,26,42);CARD=(22,39,57);BORDER=(42,71,88)
@@ -27,7 +31,7 @@ class Game:
         self.pg=pygame
         pygame.init()
         self.screen=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE)
-        pygame.display.set_caption('NULLTRACE | Nine-stage Academy — v1.2 RC1')
+        pygame.display.set_caption('NULLTRACE | Cinematic Investigations — v1.5 RC1')
         self.canvas=pygame.Surface((WIDTH,HEIGHT))
         self.f={
             'small':pygame.font.SysFont('DejaVu Sans',15),
@@ -38,6 +42,12 @@ class Game:
         self.store=store or Store()
         self.curriculum=curriculum or Curriculum()
         self.lessons=LessonLibrary(self.curriculum.root,self.curriculum)
+        self.cinematics=CinematicLibrary(self.curriculum.root)
+        self.casebook=Casebook(self.curriculum.root)
+        self.cutscene=Timeline(self.cinematics.get(1))
+        self.case_session=CaseSession(self.casebook.get(1))
+        self.case_feedback=''
+        self.journey=PacketJourney(1)
         self.stage=0;self.lesson_scroll=0;self.diagram_hop=0
         self.practice_feedback='';self.practice_ok=False
         self.field_note='';self.qa_stages={}
@@ -117,7 +127,7 @@ class Game:
         self.canvas.fill(BG)
         self._write('N U L L T R A C E',28,22,'large',ACCENT)
         self._write('THE CYBERSECURITY CHRONICLES',31,65,'small',MUTED)
-        self._write('ACADEMY v1.2 RC1  •  900 LESSON STAGES',820,20,'small',GOLD)
+        self._write('CINEMATIC v1.5 RC1  •  100 LESSONS',817,20,'small',GOLD)
         self.pg.draw.line(self.canvas,BORDER,(24,96),(1156,96),1)
         if self.session:
             profile=self.store.player(self.profile_id)
@@ -176,7 +186,7 @@ class Game:
         self._button('VIEW YOUR ENDING' if all_done else 'CONTINUE MISSION',290,477,270,48,lambda m=upcoming.id:self.navigate('ending') if all_done else self.open_mission(m),highlight=True)
         self._button('BROWSE CHAPTERS',578,477,270,48,lambda:self.navigate('chapters'))
         self._button('OPERATIONS FLOOR',864,477,242,48,lambda:self.navigate('operator_room'))
-        self._write('Nine-stage learning expansion. Story cinematics and detailed lab simulations remain future work.',289,566,'small',MUTED,max_width=805,max_lines=2)
+        self._write('100 Academy lessons, 10 replayable chapter cinematics, 10 synthetic evidence investigations.',289,566,'small',MUTED,max_width=805,max_lines=2)
 
     def draw_profile(self):
         self._panel('CREATE / SELECT OPERATOR','Alex / Ghost / hoodie are editable examples, never mandatory identities.')
@@ -211,6 +221,9 @@ class Game:
     def draw_story(self):
         name,title,location,first,last=(self.chapter,)+CHAPTERS.get(self.chapter,CHAPTERS[1])
         self._panel(f'ACT {1 if name<=3 else 2 if name<=7 else 3} / CHAPTER {name:02d} — {title}', f'{location} // STORY BRIEFING')
+        self._button('WATCH CINEMATIC',289,186,206,29,self._start_cinematic)
+        self._button('OPEN CHAPTER CASE',515,186,231,29,self._start_case)
+        self._button('PACKET JOURNEY',768,186,231,29,self._start_journey)
         self._rect(290,221,811,262,(12,31,44),10)
         self._write(first,314,249,'medium',TEXT,max_width=560,max_lines=5,line_height=29)
         self._write(last,314,378,'normal',ACCENT,max_width=560,max_lines=4,line_height=29)
@@ -231,6 +244,118 @@ class Game:
             self._button('VERIFY EVIDENCE FIRST',774,569,316,37,lambda:self._story_decision('verify'))
             chosen=(self.qa_story_choices if self.qa else self.store.choices(self.profile_id)).get(f'chapter{self.chapter:02d}_decision','not chosen')
             self._write(f'Recorded decision: {chosen}',304,611,'small',MUTED,max_width=620)
+
+    def _start_cinematic(self):
+        self.cutscene=Timeline(self.cinematics.get(self.chapter))
+        self.page='cinematic'
+        self.notice='';self.error=''
+
+    def draw_cinematic(self):
+        seq=self.cutscene.sequence
+        beat=self.cutscene.beat
+        self._panel(f'CINEMATIC / CHAPTER {seq.chapter:02d} — {CHAPTERS[seq.chapter][0]}',
+                    f'{seq.location}   •   Beat {self.cutscene.index+1}/{len(seq.beats)}   •   Manual controls always available')
+        draw_set(self.pg,self.canvas,(287,204,818,237),seq.environment,beat.shot,
+                 self.pg.time.get_ticks(),self.reduced_motion)
+        if self.session:
+            appearance=self.store.player(self.profile_id)['appearance']
+            draw_operator(self.pg,self.canvas,985,418,appearance,self.pg.time.get_ticks(),
+                          scale=.70,reduced_motion=self.reduced_motion)
+        self._rect(287,446,817,100,(10,25,40),8)
+        speaker= self.codename.upper() if beat.speaker=='OPERATOR' else beat.speaker
+        text=self.cinematics.substitute(beat.text,self.name,self.codename)
+        self._write(f'{speaker}  //  {beat.shot.upper()}',304,453,'small',GOLD)
+        self._write(text,304,476,'normal',TEXT,max_width=773,max_lines=3,line_height=22)
+        self._button('◀ PREV',286,564,134,39,self.cutscene.previous,enabled=self.cutscene.index>0)
+        self._button('NEXT ▶' if not self.cutscene.done else 'AT END',427,564,138,39,self.cutscene.advance,enabled=not self.cutscene.done)
+        self._button('PAUSE' if self.cutscene.playing else 'AUTO PLAY',571,564,160,39,self._toggle_cutscene)
+        self._button('RESTART',742,564,150,39,self.cutscene.restart)
+        self._button('BACK TO STORY',902,564,195,39,lambda:self.navigate('story'),highlight=True)
+        self._write('SPACE: next beat   •   R: restart   •   M: reduced motion   •   These are story scenes, not live evidence.',292,615,'small',MUTED,max_width=790)
+
+    def _toggle_cutscene(self):
+        self.cutscene.playing=not self.cutscene.playing and not self.reduced_motion
+
+    def _start_case(self):
+        self.case_session=CaseSession(self.casebook.get(self.chapter))
+        self.case_feedback=''
+        self.notice='';self.error=''
+        self.page='casework'
+
+    def _select_case_evidence(self,eid):
+        self.case_session.toggle(eid)
+        self.case_feedback=''
+
+    def _choose_case_conclusion(self,index):
+        self.case_session.choose(index)
+        self.case_feedback=''
+
+    def _submit_case(self):
+        good, feedback=self.case_session.assess()
+        self.case_feedback=('PASS: ' if good else 'REVIEW: ')+feedback
+        if good and self.session and not self.qa:
+            self.store.record_case(self.profile_id,self.case_session.case.id,
+                                   self.case_session.conclusion,self.case_session.selected)
+
+    def draw_casework(self):
+        c=self.case_session.case
+        solved=False if self.qa or not self.session else c.id in self.store.solved_cases(self.profile_id)
+        self._panel(f'CASE FILE  //  {c.id} — {c.title}',
+                    'Select supporting records, choose a conclusion, then submit. Case reviews are separate from missions.')
+        self._write(c.briefing,291,200,'normal',TEXT,max_width=797,max_lines=2)
+        self._write('EVIDENCE  —  click to include / exclude',293,250,'small',GOLD)
+        for i,e in enumerate(c.evidence):
+            y=274+i*42
+            checked=e.id in self.case_session.selected
+            lab=f'{"☑" if checked else "☐"} [{e.kind}] {e.label}'
+            self._button(lab,292,y,804,37,lambda key=e.id:self._select_case_evidence(key),highlight=checked)
+        y=447
+        self._write('HYPOTHESIS — SELECT ONE',293,y,'small',GOLD)
+        for i,choice in enumerate(c.conclusions):
+            self._button(f'{i+1}. {choice}',293,469+i*35,805,31,
+                         lambda i=i:self._choose_case_conclusion(i),highlight=self.case_session.conclusion==i)
+        self._button('VERIFY CASE',292,595,208,35,self._submit_case,highlight=True)
+        self._button('STORY',1002,595,101,35,lambda:self.navigate('story'))
+        if self.case_feedback:
+            self._write(self.case_feedback,517,596,'small',GOOD if self.case_feedback.startswith('PASS:') else BAD,max_width=470,max_lines=2)
+        if solved:self._write('VERIFIED IN THIS PROFILE',826,256,'small',GOOD,max_width=260)
+
+    def _start_journey(self):
+        self.journey=PacketJourney(self.chapter)
+        self.notice='';self.error=''
+        self.page='journey'
+
+    def draw_journey(self):
+        j=self.journey
+        self._panel(f'PACKET JOURNEY // {j.name.upper()}',
+                    f'CH{j.chapter:02d}  •  SIMULATED TRAFFIC / NOT LIVE CAPTURE  •  Gateway {"ONLINE" if j.gateway_online else "OFFLINE"}')
+        hops=j.hops
+        x0=340;xspan=710
+        xs=[int(x0+i*xspan/max(1,len(hops)-1)) for i in range(len(hops))]
+        y=380
+        for i in range(len(hops)-1):
+            self.pg.draw.line(self.canvas,GOOD if i<j.index else BORDER,(xs[i]+27,y),(xs[i+1]-27,y),4)
+        for i,h in enumerate(hops):
+            active=i<=j.index
+            self.pg.draw.circle(self.canvas,ACCENT if active else CARD,(xs[i],y),29)
+            self.pg.draw.circle(self.canvas,BORDER,(xs[i],y),29,2)
+            self._write(str(i+1),xs[i]-5,y-8,'normal',BG if active else TEXT)
+            self._write(h.label, xs[i]-78,y+44,'small',TEXT,max_width=155,max_lines=1)
+            self._write(h.address,xs[i]-78,y+65,'small',MUTED,max_width=155,max_lines=1)
+        h=j.current
+        self._rect(294,215,798,97,CARD)
+        self._write(f'CURRENT HOP {j.index+1}/{len(hops)}: {h.label.upper()}',312,231,'medium',GOLD)
+        self._write(h.note,312,267,'small',TEXT,max_width=763,max_lines=2)
+        self._button('STEP',294,503,148,44,j.step,enabled=not j.at_end,highlight=True)
+        self._button('PAUSE' if j.playing else 'AUTO PLAY',455,503,166,44,self._toggle_journey)
+        self._button('RESET',632,503,145,44,j.reset)
+        self._button('GATEWAY ON/OFF',786,503,306,44,j.toggle_gateway)
+        self._write('Time steps demonstrate packet routing concepts, not actual captures or host addresses.',298,569,'small',MUTED,max_width=787)
+        self._button('RETURN TO NETWORK',295,593,275,42,lambda:self.navigate('network'))
+        self._button('CHAPTER CASE',586,593,249,42,self._start_case)
+
+    def _toggle_journey(self):
+        self.journey.playing=not self.journey.playing
 
     def _story_decision(self,value):
         key=f'chapter{self.chapter:02d}_decision'
@@ -531,6 +656,10 @@ class Game:
 
     def update(self,dt):
         """Frame-rate independent character movement, never acts on real devices."""
+        if self.page=='cinematic':
+            self.cutscene.tick(dt)
+        if self.page=='journey':
+            self.journey.tick(dt)
         self.room_moving=False
         if self.page!='operator_room' or self.session is None:return
         keys=self.pg.key.get_pressed()
@@ -566,6 +695,7 @@ class Game:
         test_path=route(gateway_online=self.gateway_online)
         self._write('ROUTE: '+' → '.join(test_path),320,548,'small',GOOD if self.gateway_online else BAD,max_width=735,max_lines=2)
         self._button('SIMULATE GATEWAY FAILURE / RESTORE',317,572,425,29,self._toggle_gateway)
+        self._button('PACKET JOURNEY',769,572,299,29,self._start_journey)
 
     def _toggle_gateway(self):
         self.gateway_online=not self.gateway_online
@@ -581,6 +711,7 @@ class Game:
             self._write(code.upper().replace('_',' '),292,y,'small',GOLD,max_width=230,max_lines=1)
             self._write(desc,524,y,'small',TEXT,max_width=576,max_lines=1)
         self._button('EXPORT TRAINING DOSSIER',293,585,349,42,self._export_dossier,highlight=True)
+        self._button('CHAPTER CASE FILE',653,585,252,42,self._start_case)
         self._write('Synthetic artifacts only. No real person or organization is implicated.',656,593,'small',MUTED,max_width=450,max_lines=2)
 
     def _export_dossier(self):
@@ -665,7 +796,7 @@ class Game:
         if event.type == pg.QUIT:self.running=False;return
         if event.type == pg.KEYDOWN:
             if event.key==pg.K_ESCAPE:
-                self.page='home' if self.page in ('chapters','profile','tools','story','terminal','network','evidence','tool_result','operator_room','disclosure','ending','academy') else 'chapters'
+                self.page='home' if self.page in ('chapters','profile','tools','story','terminal','network','evidence','tool_result','operator_room','disclosure','ending','academy','cinematic','casework','journey') else 'chapters'
                 return
             if self.page=='lesson':
                 if event.key==pg.K_PAGEUP:
@@ -676,6 +807,16 @@ class Game:
                     self._practice_answer(event.key-pg.K_1);return
                 if self.stage==7 and event.key in (pg.K_RETURN,pg.K_KP_ENTER):
                     self._save_field_note();return
+            if self.page=='cinematic':
+                if event.key==pg.K_SPACE:self.cutscene.advance();return
+                if event.key==pg.K_r:self.cutscene.restart();return
+                if event.key==pg.K_m:
+                    self.reduced_motion=not self.reduced_motion
+                    if self.reduced_motion:self.cutscene.playing=False
+                    return
+            if self.page=='journey':
+                if event.key==pg.K_SPACE:self.journey.step();return
+                if event.key==pg.K_r:self.journey.reset();return
             if self.page=='operator_room' and event.key==pg.K_m:
                 self.reduced_motion=not self.reduced_motion
                 return

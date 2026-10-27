@@ -40,3 +40,13 @@
 - QA keeps education practice in memory and does not modify persistent player progress.
 - Preserved four existing controlled laboratory integrations, initial game loop, assessment gates and 100 mission identifiers.
 - New source and schema tests; real Ubuntu Pygame UI acceptance required. This is not the full cinematic production release.
+
+## v1.5.0-rc1 — Cinematic scenes, evidence cases, and packet journey — 2026-10-27
+
+- Added **five procedural 2D cinematic locations** (apartment, operations, archive, datacenter, MIRROR control center) and a validated chapter sequence/timeline engine with pause, next, previous, restart, captions, and safe profile substitution.
+- Authored **10 replayable chapter sequences (50 beats)** with distinct story beats connected to Story Archive; no actual movie footage or copyrighted assets.
+- Added **10 evidence case files** with observation/inference/claim separation, three conclusions, explicit supporting-evidence requirements, wrong-answer feedback, per-player SQLite tracking, and QA save isolation.
+- Added a **10-scenario offline packet-journey viewer** with step/play/reset, labeled hosts and simulated gateway failure; it neither captures packets nor scans devices.
+- Preserved original 100 assessed missions, 900 Academy stages, and optional approved real security-tool adapters.
+- Added v1.5 user and developer manuals, updated master system document with future modifications, and manual acceptance matrix.
+- **Honest scope:** procedural graphical prototype; cinematic voice, art assets, 100 unique independent mini-project simulations, native installers, and Windows acceptance remain future milestones.

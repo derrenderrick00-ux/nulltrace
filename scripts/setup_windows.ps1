@@ -9,4 +9,4 @@ if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
 if ($LASTEXITCODE -ne 0) { throw 'Environment checks failed' }
 & .\.venv\Scripts\python.exe -m pytest -q
 if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
-Write-Host 'NULLTRACE v1.0.0-rc1 Python tests passed. GUI and tool acceptance remains pending.'
+Write-Host 'NULLTRACE v1.5.0-rc1 Python tests passed. Windows GUI acceptance remains pending.'

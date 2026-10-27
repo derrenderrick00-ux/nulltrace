@@ -51,6 +51,15 @@ class Store:
                 value TEXT NOT NULL,
                 PRIMARY KEY(player_id, choice_id));
         ''')
+        # v1.5 additive migration; unrelated to mission/lesson completion.
+        self.con.execute('''CREATE TABLE IF NOT EXISTS case_reviews(
+            player_id INTEGER NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+            case_id TEXT NOT NULL,
+            conclusion INTEGER NOT NULL CHECK(conclusion BETWEEN 0 AND 2),
+            evidence_json TEXT NOT NULL,
+            recorded_at INTEGER NOT NULL,
+            PRIMARY KEY(player_id, case_id))''')
+        self.con.commit()
         # v1.2 additive migration: keeps existing profile, mission and evidence rows.
         self.con.executescript('''
             CREATE TABLE IF NOT EXISTS lesson_stage_progress(
@@ -108,6 +117,31 @@ class Store:
         r=self.con.execute('SELECT note FROM lesson_field_notes WHERE player_id=? AND mission_id=?',
                            (player_id,mission_id)).fetchone()
         return r[0] if r else ''
+
+    def record_case(self, player_id: int, case_id: str, conclusion: int, evidence_ids: set[str]) -> bool:
+        """Store only successful synthetic case completions, idempotently."""
+        if not isinstance(case_id,str) or not case_id.startswith('CASE-CH') or len(case_id)!=9:
+            raise ValueError('Invalid case identifier')
+        if type(conclusion)!=int or not 0<=conclusion<=2:
+            raise ValueError('Invalid conclusion')
+        if not isinstance(evidence_ids,set) or not all(isinstance(i,str) and len(i)<=70 for i in evidence_ids):
+            raise ValueError('Invalid case evidence')
+        import json
+        with self.con:
+            row=self.con.execute('SELECT id FROM players WHERE id=?',(player_id,)).fetchone()
+            if not row:raise ValueError('Unknown player')
+            cur=self.con.execute('INSERT OR IGNORE INTO case_reviews(player_id,case_id,conclusion,evidence_json,recorded_at) VALUES(?,?,?,?,?)',
+                  (player_id,case_id,conclusion,json.dumps(sorted(evidence_ids)),int(time.time())))
+            return bool(cur.rowcount)
+
+    def solved_cases(self, player_id:int) -> set[str]:
+        return {row[0] for row in self.con.execute('SELECT case_id FROM case_reviews WHERE player_id=?',(player_id,))}
+
+    def case_report(self, player_id:int, case_id:str):
+        row=self.con.execute('SELECT conclusion,evidence_json,recorded_at FROM case_reviews WHERE player_id=? AND case_id=?',(player_id,case_id)).fetchone()
+        if row is None:return None
+        import json
+        return {'conclusion':row[0],'evidence':json.loads(row[1]),'recorded_at':row[2]}
 
     def close(self):
         self.con.close()

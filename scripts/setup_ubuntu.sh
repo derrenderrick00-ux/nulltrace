@@ -23,7 +23,7 @@ fi
 .venv/bin/python -m pytest -q
 
 echo
-echo "NULLTRACE v1.0.0-rc1 environment ready (Phase 7–10 acceptance still pending)."
+echo "NULLTRACE v1.5.0-rc1 environment ready (GUI acceptance still pending)."
 echo "Activate with: source .venv/bin/activate"
 echo "Start the game with: python -m nulltrace
-Check later with: bash scripts/verify_phases_7_to_10.sh"
+Check later with: bash scripts/verify_cinematics_v15.sh"

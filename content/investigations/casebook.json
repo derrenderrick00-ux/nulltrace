@@ -1,0 +1,402 @@
+[
+  {
+    "schema_version": 1,
+    "id": "CASE-CH01",
+    "chapter": 1,
+    "title": "Gateway contradiction",
+    "briefing": "The workstation can reach its switch but cannot contact a server on another subnet.",
+    "evidence": [
+      {
+        "id": "CH01-IP",
+        "label": "The workstation has address 192.168.10.17/24.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH01-ROUTE",
+        "label": "Its configured gateway does not match 192.168.10.1.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH01-NOTE",
+        "label": "The server is accessible from another subnet.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH01-CLAIM",
+        "label": "A physical cable failure was blamed without a link test.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "Incorrect default gateway is a supported diagnosis.",
+      "The office firewall was certainly compromised.",
+      "A lost packet proves the server was deleted."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH01-IP",
+      "CH01-ROUTE"
+    ],
+    "feedback": "This supports a routing misconfiguration, not malicious activity."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH02",
+    "chapter": 2,
+    "title": "Unlisted segment",
+    "briefing": "The diagram omits a monitoring uplink from the recorded switch inventory.",
+    "evidence": [
+      {
+        "id": "CH02-TOPOLOGY",
+        "label": "Printed topology lists office and service segments.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH02-INVENTORY",
+        "label": "Switch inventory includes an uplink absent from the paper diagram.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH02-LABEL",
+        "label": "MIRROR appears in a port description.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH02-RUMOR",
+        "label": "An anonymous report calls the uplink a secret tunnel.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "The diagram is incomplete; the purpose of the uplink remains uncertain.",
+      "The uplink is definitely an attacker command channel.",
+      "Every omitted connection means an active incident."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH02-TOPOLOGY",
+      "CH02-INVENTORY"
+    ],
+    "feedback": "Describe the discrepancy without assigning intent."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH03",
+    "chapter": 3,
+    "title": "Unusual resolution",
+    "briefing": "A suspicious hostname is queried by a training workstation.",
+    "evidence": [
+      {
+        "id": "CH03-DNS",
+        "label": "A DNS query requests mirror.training.invalid.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH03-RESPONSE",
+        "label": "The synthetic resolver returns 198.51.100.53.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH03-CACHE",
+        "label": "No packet provides the user intention behind the request.",
+        "kind": "limitation"
+      },
+      {
+        "id": "CH03-RUMOR",
+        "label": "A message claims all DNS requests are spying.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "The DNS resolution occurred; user intent cannot be inferred from it alone.",
+      "The hostname proves sensitive files were uploaded.",
+      "The query confirms the user is a Directorate agent."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH03-DNS",
+      "CH03-RESPONSE"
+    ],
+    "feedback": "Resolve protocol facts before narrative claims."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH04",
+    "chapter": 4,
+    "title": "Silent intermediary",
+    "briefing": "A traceroute stops displaying responses at an intermediate hop.",
+    "evidence": [
+      {
+        "id": "CH04-HOP",
+        "label": "The route tool sees a response from the first gateway.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH04-SILENCE",
+        "label": "The next router did not send a visible TTL-expired reply.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH04-SERVICE",
+        "label": "The final service responds to another test.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH04-ASSUMPTION",
+        "label": "An analyst calls the unresponsive hop destroyed.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "An intermediate router may filter diagnostic replies while forwarding traffic.",
+      "All packets stopped permanently at that router.",
+      "The ISP secretly changed the destination."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH04-SILENCE",
+      "CH04-SERVICE"
+    ],
+    "feedback": "No ICMP reply is not equivalent to a confirmed forwarding failure."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH05",
+    "chapter": 5,
+    "title": "Capture discrepancy",
+    "briefing": "A published packet summary omits the three-frame DNS transaction.",
+    "evidence": [
+      {
+        "id": "CH05-PCAP",
+        "label": "The supplied capture contains a three-frame DNS sequence.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH05-SUMMARY",
+        "label": "The signed summary does not mention DNS queries.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH05-HASH",
+        "label": "A capture hash identifies the reviewed fixture.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH05-ACCUSATION",
+        "label": "A forum post blames a particular employee.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "The summary is incomplete relative to this capture.",
+      "A particular employee definitely altered it.",
+      "The capture reveals private HTTPS content."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH05-PCAP",
+      "CH05-SUMMARY"
+    ],
+    "feedback": "The discrepancy warrants review, not an automatic attribution."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH06",
+    "chapter": 6,
+    "title": "Unregistered service",
+    "briefing": "A loopback-only inventory discovers a TCP listener.",
+    "evidence": [
+      {
+        "id": "CH06-SCOPE",
+        "label": "The authorized training target is 127.0.0.1.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH06-SCAN",
+        "label": "A temporary TCP service reports open during the test.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH06-REGISTER",
+        "label": "The illustrative inventory did not list that service.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH06-ASSUMPTION",
+        "label": "An open port is called a confirmed breach.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "A reachable service is exposed within the approved lab scope.",
+      "The host has conclusively been compromised.",
+      "A port scan extracts private credentials."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH06-SCOPE",
+      "CH06-SCAN"
+    ],
+    "feedback": "Recommend inventory review; an open port is not proof of exploitation."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH07",
+    "chapter": 7,
+    "title": "Training credential",
+    "briefing": "A deliberately weak synthetic password is found by a local auditing tool.",
+    "evidence": [
+      {
+        "id": "CH07-HASH",
+        "label": "The test hash was generated for this lesson only.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH07-AUDIT",
+        "label": "A short training wordlist matched the fixture.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH07-RECORD",
+        "label": "The test vault contains no real user accounts.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH07-MYTH",
+        "label": "One match proves every account uses the same password.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "The training credential is weak against the demonstrated audit.",
+      "Real company passwords have all been cracked.",
+      "Hashing and encryption are the same."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH07-HASH",
+      "CH07-AUDIT"
+    ],
+    "feedback": "Explain adaptive password hashing and defense in depth."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH08",
+    "chapter": 8,
+    "title": "Portal authorization",
+    "briefing": "The synthetic MIRROR portal serves case records by object identifier.",
+    "evidence": [
+      {
+        "id": "CH08-REQUEST",
+        "label": "The learner changes the case identifier in a local GET request.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH08-RESPONSE",
+        "label": "The local service responds without checking object-level access.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH08-BOUNDARY",
+        "label": "Only fictional training data exists in this service.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH08-RUMOR",
+        "label": "Someone claims every web application has this defect.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "The training service lacks an object-level authorization check.",
+      "Every website can be breached by changing a URL.",
+      "The browser must always authenticate the server itself."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH08-REQUEST",
+      "CH08-RESPONSE"
+    ],
+    "feedback": "Authorization needs to be enforced on the server."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH09",
+    "chapter": 9,
+    "title": "Conflicting logs",
+    "briefing": "Two independent records disagree about MIRROR metadata.",
+    "evidence": [
+      {
+        "id": "CH09-MI",
+        "label": "MI-07 records MIRROR metadata at the incident time.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH09-IS",
+        "label": "IS-21 denies that the metadata exists.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH09-TIMELINE",
+        "label": "Timestamps establish an ordering but not a motive.",
+        "kind": "limitation"
+      },
+      {
+        "id": "CH09-CLAIM",
+        "label": "The first hypothesis names a guilty party without verification.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "There is an evidence discrepancy requiring independent corroboration.",
+      "The discrepancy proves deliberate deception by a named person.",
+      "All logs must have been fabricated."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH09-MI",
+      "CH09-IS"
+    ],
+    "feedback": "Correlate records; avoid definitive attribution based on conflict alone."
+  },
+  {
+    "schema_version": 1,
+    "id": "CASE-CH10",
+    "chapter": 10,
+    "title": "The disclosure choice",
+    "briefing": "The final dossier is technically supported but contains sensitive context.",
+    "evidence": [
+      {
+        "id": "CH10-REPORT",
+        "label": "The dossier states observations separately from inferences.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH10-MINIMIZE",
+        "label": "Some bystanders are not implicated by the technical evidence.",
+        "kind": "limitation"
+      },
+      {
+        "id": "CH10-OVERSIGHT",
+        "label": "Independent review can evaluate the claims with safeguards.",
+        "kind": "observation"
+      },
+      {
+        "id": "CH10-RUMOR",
+        "label": "A leak promises absolute proof without source verification.",
+        "kind": "claim"
+      }
+    ],
+    "conclusions": [
+      "Proportionate, evidence-based disclosure should protect affected people.",
+      "Publish every record, including unrelated private information.",
+      "Destroy the case materials to avoid conflict."
+    ],
+    "correct_index": 0,
+    "required_evidence": [
+      "CH10-REPORT",
+      "CH10-MINIMIZE"
+    ],
+    "feedback": "A strong technical case still requires an ethical decision."
+  }
+]

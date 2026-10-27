@@ -1,0 +1,382 @@
+[
+  {
+    "schema_version": 1,
+    "chapter": 1,
+    "location": "Meridian apartment",
+    "environment": "apartment",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // MERIDIAN APARTMENT. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "JONAH",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "A routine connectivity report is overdue. Your first task is to distinguish symptoms from causes."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "JONAH",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Find the exact network setting that prevented access to a server."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "MIRROR-07 appears in a restricted event field; that is an observation, not proof of surveillance."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 2,
+    "location": "Meridian network floor",
+    "environment": "operations",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // MERIDIAN NETWORK FLOOR. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "JONAH",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "The printed topology omits a network segment. Inspect the diagram before assigning intent."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "JONAH",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Compare address ranges, local links, and the alleged missing device."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "The revised map reveals an unlisted monitoring uplink."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 3,
+    "location": "Meridian archive terminal",
+    "environment": "operations",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // MERIDIAN ARCHIVE TERMINAL. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "DNS and ARP records appear beside an unfamiliar MIRROR reference."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Separate protocol behavior from the inferences made about it."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "MIRROR is a real subsystem whose published documentation is incomplete."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 4,
+    "location": "Routing operations room",
+    "environment": "operations",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // ROUTING OPERATIONS ROOM. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "MARA",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "The route report does not match a technician’s field notes."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "MARA",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Trace hops and understand why a silent router is not always a broken one."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "The path remains uncertain even after the troubleshooting case is closed."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 5,
+    "location": "Encrypted archive",
+    "environment": "archive",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // ENCRYPTED ARCHIVE. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "A short packet capture has become the center of a disputed incident report."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Review the supplied capture and label what each frame actually reveals."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "The official summary omits packet evidence but does not explain who made the omission."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 6,
+    "location": "Local audit bay",
+    "environment": "datacenter",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // LOCAL AUDIT BAY. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "JONAH",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "An authorized inventory shows a management service that was not on the approved register."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "JONAH",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Use the lab’s scope and record the exposure without calling it a compromise."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "The inventory report introduces a second lead into NEXUS."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 7,
+    "location": "Synthetic vault",
+    "environment": "archive",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // SYNTHETIC VAULT. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "An archived access record depends on a credential believed to be secure."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Evaluate only the synthetic password-audit fixture; keep real credentials outside the lab."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "The SPECTER codename appears in records attributed to several people."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 8,
+    "location": "MIRROR portal",
+    "environment": "mirror",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // MIRROR PORTAL. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "MARA",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "The local training portal returns case records through an object identifier."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "MARA",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Determine why server-side access checks matter even when the browser hides controls."
+      },
+      {
+        "speaker": "UNKNOWN",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "A missing authorization check explains a fictional data exposure."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 9,
+    "location": "Incident response room",
+    "environment": "operations",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // INCIDENT RESPONSE ROOM. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "ROOK",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "Two independent records disagree on whether MIRROR observed an incident."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "ROOK",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Compare provenance, timestamps, and alternative explanations before making an accusation."
+      },
+      {
+        "speaker": "SYSTEM",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "The covert manipulation becomes apparent only after several records are correlated."
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "chapter": 10,
+    "location": "NEXUS review chamber",
+    "environment": "mirror",
+    "beats": [
+      {
+        "speaker": "SYSTEM",
+        "shot": "establish",
+        "duration_ms": 3500,
+        "text": "YEAR 2038 // NEXUS REVIEW CHAMBER. Connection logs are evidence, not verdicts."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "dialogue",
+        "duration_ms": 4500,
+        "text": "The final dossier contains enough evidence for a decision, but not unlimited certainty."
+      },
+      {
+        "speaker": "OPERATOR",
+        "shot": "close",
+        "duration_ms": 4400,
+        "text": "{codename} online. I will verify what the records show before reporting a conclusion."
+      },
+      {
+        "speaker": "IMANI",
+        "shot": "console",
+        "duration_ms": 4700,
+        "text": "Present a proportionate recommendation and consider affected people."
+      },
+      {
+        "speaker": "SYSTEM",
+        "shot": "reveal",
+        "duration_ms": 5300,
+        "text": "Your disclosure route influences accountability, privacy, and the final epilogue."
+      }
+    ]
+  }
+]

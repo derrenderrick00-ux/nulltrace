@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 
 def main() -> int:
-    parser=argparse.ArgumentParser(description='NULLTRACE complete 100-mission release candidate')
+    parser=argparse.ArgumentParser(description='NULLTRACE v1.5 educational thriller and offline investigation candidate')
     parser.add_argument('--doctor','--strict',dest='doctor',action='store_true',help='Run environment diagnostic (Phase 0 compatible)')
     parser.add_argument('--qa',action='store_true',help='Launch developer QA mode with all 100 missions accessible; does not save mission progress')
     parser.add_argument('--list-missions',action='store_true',help='Print 100 mission identifiers and phase status')
