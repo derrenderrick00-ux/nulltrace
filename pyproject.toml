@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nulltrace-game"
-version = "1.0.0rc1"
-description = "NULLTRACE: The Cybersecurity Chronicles — Phases 7–10 integrated campaign release candidate"
+version = "1.2.0rc1"
+description = "NULLTRACE: The Cybersecurity Chronicles — Nine-stage educational expansion across 100 missions"
 readme = "README.md"
 requires-python = ">=3.10,<3.16"
 dependencies = [

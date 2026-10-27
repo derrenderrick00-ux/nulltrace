@@ -51,9 +51,63 @@ class Store:
                 value TEXT NOT NULL,
                 PRIMARY KEY(player_id, choice_id));
         ''')
+        # v1.2 additive migration: keeps existing profile, mission and evidence rows.
+        self.con.executescript('''
+            CREATE TABLE IF NOT EXISTS lesson_stage_progress(
+                player_id INTEGER NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+                mission_id TEXT NOT NULL,
+                stage_index INTEGER NOT NULL CHECK(stage_index BETWEEN 0 AND 8),
+                recorded_at INTEGER NOT NULL,
+                PRIMARY KEY(player_id,mission_id,stage_index));
+            CREATE TABLE IF NOT EXISTS lesson_field_notes(
+                player_id INTEGER NOT NULL REFERENCES players(id) ON DELETE CASCADE,
+                mission_id TEXT NOT NULL,
+                note TEXT NOT NULL CHECK(length(note)<=1200),
+                PRIMARY KEY(player_id,mission_id));
+        ''')
         if self.con.execute('SELECT COUNT(*) FROM schema_meta').fetchone()[0] == 0:
             self.con.execute('INSERT INTO schema_meta VALUES(1)')
+        with self.con:
+            self.con.execute('UPDATE schema_meta SET version=2 WHERE version<2')
         self.con.commit()
+
+    def lesson_summary(self, player_id: int) -> dict[int,int]:
+        """Return count of recorded stages by chapter without changing mission completion."""
+        rows=self.con.execute('SELECT mission_id,COUNT(*) FROM lesson_stage_progress '
+                              'WHERE player_id=? GROUP BY mission_id',(player_id,)).fetchall()
+        result={i:0 for i in range(1,11)}
+        for mid,total in rows:
+            if re.fullmatch(r'CH\d{2}-M\d{2}',mid):
+                chapter=int(mid[2:4])
+                if chapter in result:result[chapter]+=total
+        return result
+
+    def stages_done(self, player_id: int, mission_id: str) -> set[int]:
+        return {row[0] for row in self.con.execute(
+            'SELECT stage_index FROM lesson_stage_progress WHERE player_id=? AND mission_id=?',
+            (player_id,mission_id))}
+
+    def mark_stage(self, player_id: int, mission_id: str, stage_index: int):
+        if not isinstance(stage_index,int) or not 0 <= stage_index <= 8:
+            raise ValueError('Invalid lesson stage')
+        if not isinstance(mission_id,str) or not re.fullmatch(r'CH\d{2}-M\d{2}',mission_id):
+            raise ValueError('Invalid lesson identifier')
+        with self.con:
+            self.con.execute('INSERT OR IGNORE INTO lesson_stage_progress VALUES(?,?,?,?)',
+                             (player_id,mission_id,stage_index,int(time.time())))
+
+    def save_lesson_note(self, player_id: int, mission_id: str, note: str):
+        if not isinstance(note,str) or len(note.strip())<20 or len(note)>1200:
+            raise ValueError('Write an evidence note between 20 and 1200 characters')
+        with self.con:
+            self.con.execute('INSERT INTO lesson_field_notes VALUES(?,?,?) '
+                             'ON CONFLICT(player_id,mission_id) DO UPDATE SET note=excluded.note',
+                             (player_id,mission_id,note.strip()))
+
+    def lesson_note(self, player_id: int, mission_id: str) -> str:
+        r=self.con.execute('SELECT note FROM lesson_field_notes WHERE player_id=? AND mission_id=?',
+                           (player_id,mission_id)).fetchone()
+        return r[0] if r else ''
 
     def close(self):
         self.con.close()

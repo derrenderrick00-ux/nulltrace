@@ -1,97 +1,63 @@
-# NULLTRACE — v1.0.0-rc1 (Phases 7–10 integration candidate)
+# NULLTRACE — The Cybersecurity Chronicles
 
-**Status:** Python/Pygame desktop **100-mission campaign prototype**, pending local Ubuntu acceptance and richer production content. This is **not** a claim of completed feature parity with `docs/NULLTRACE_Master_System_Design_v1.0.md`. Do not call this the stable v1.0 release until the full manual, content, performance and accessibility gates are met.
+**v1.2.0-rc1 | Education expansion candidate (v1.1–v1.2)**
 
-The upgrade builds on your existing **v0.6.1**, preserving previous Nmap, TShark, John and operator-animation changes. Adds:
+NULLTRACE is a Python/Pygame single-player, offline-first cybersecurity learning-game prototype set in the fictional NEXUS universe. It contains 100 existing assessed missions plus a new **nine-stage Academy for each mission** (900 study stages). The Academy is intentionally separate from the graded missions: reading text or saving a reflection does **not** certify cybersecurity competence.
 
-- **Phase 7:** 10 Chapter 8 web-security missions, 10 brief teaching cards, synthetic loopback training web application and manual Burp Community exercises.
-- **Phase 8:** Chapters 9–10 (20 more assessed missions and teaching cards), synthetic incident dossier, story choices, three endings and Markdown report export.
-- **Phase 9:** Regression tests, secure loopback lab validation, old-save compatibility and a release acceptance matrix.
-- **Phase 10:** Versioned `v1.0.0-rc1` source release and automated verification script; stable cross-platform binary packaging is **not complete**.
+## Install or upgrade on Ubuntu
 
-## Ubuntu upgrade from v0.6.1 (preserves player saves)
-
-Download the upgrade ZIP into `~/Downloads`. Back up first:
+Back up your existing SQLite save and source first. Extract the release **into the existing project root**, retaining `.venv`, then:
 
 ```bash
-cd ~/Documents
-mkdir -p nulltrace-backups
-# Back up code but exclude virtual environment and local temporary files.
-tar --exclude='nulltrace/.venv' --exclude='nulltrace/__pycache__' \
-  -czf nulltrace-backups/source_before_v1rc1.tar.gz nulltrace
-if test -f ~/.local/share/nulltrace/campaign.sqlite3; then
-  cp -a ~/.local/share/nulltrace/campaign.sqlite3 \
-    nulltrace-backups/campaign_before_v1rc1.sqlite3
-fi
-```
-
-Upgrade **into the existing root** (no new nested project directory):
-
-```bash
-unzip -o ~/Downloads/NULLTRACE_Phases_7_to_10_v1.0.0-rc1.zip -d ~/Documents/nulltrace
 cd ~/Documents/nulltrace
 source .venv/bin/activate
 python -m pip install -e '.[dev]'
-bash scripts/verify_phases_7_to_10.sh
+bash scripts/verify_education_v12.sh
 python -m nulltrace
 ```
 
-If you keep saves at a custom location (`NULLTRACE_SAVE_DIR` or `XDG_DATA_HOME`), back up that location too. The ZIP contains **no** user SQLite save file; the SQLite schema is unchanged. Existing completed missions retain their original IDs.
+Detailed user acceptance and migration instructions: `docs/EDUCATION_V1_1_TO_V1_2_ACCEPTANCE.md`.
 
-## Runtime / controls
+## Gameplay
 
-```bash
-python -m nulltrace               # Normal campaign (prerequisites enforced)
-python -m nulltrace --qa          # Developer mode; missions/decisions not saved
-python -m nulltrace --strict      # Environment diagnostic
-python -m nulltrace --list-missions
-python -m nulltrace --lab incident # Offline synthetic evidence case review
-python -m nulltrace --lab packet # Existing offline TShark integration
-python -m nulltrace --lab nmap   # Existing loopback-only Nmap exercise
-python -m nulltrace --lab john   # Existing generated-hash exercise
-python -m nulltrace --lab web    # Check web-training receipt; does NOT launch server
-python -m nulltrace --web-lab    # Start bounded 127.0.0.1 training HTTP portal, Ctrl+C stops
-python -m nulltrace --export-dossier ~/Documents/nulltrace_case.md
-```
+1. Create an operator (Alex/Ghost/hoodie is an editable example) or select an existing profile.
+2. Open **ACADEMY**, choose a chapter and a mission.
+3. Navigate **Objectives → Terms → Step by step → Visual model → Worked example → Real-life application → Practice → Mini-project → Integrated operation**.
+4. Mark stages after studying; inspect the chapter-level hop diagram; answer the practice check; write your own short evidence note.
+5. Use **MISSION ASSESSMENT** for the original separately graded challenge. Applicable external tool labs remain explicitly user-triggered.
 
-Controls: mouse click; keyboard `1`–`3` for assessment answers; `Esc` for navigation; on Operations Floor, `WASD`/arrows move the character and `M` toggles reduced motion. Alex/Ghost/hoodie is a customizable sample, not mandatory.
+Stage progress persists per player in SQLite, separate from mission completions. Previously completed missions stay completed after the additive database migration. In `--qa` mode, no progress is persisted.
 
-## Chapter 8 manual Burp Suite Community exercise
-
-1. Open **Terminal A**, activate `.venv`, and run `python -m nulltrace --web-lab`. It prints the assigned local URL, e.g. `http://127.0.0.1:NNNN/` (the port varies). Keep it running.
-2. Use a **Burp Suite Community** browser/proxy configured for the **printed local URL only**. Review the synthetic `case=alpha` request. Send it to Repeater.
-3. In Repeater, change the query parameter to `case=mirror` and add header `X-Nulltrace-Review: authorized`. Submit; observe the different synthetic case record. This demonstrates the intentionally missing case-owner authorization control.
-4. Open **Terminal B**, activate `.venv`, and run `python -m nulltrace --lab web`. Expected mode: `local-http (pass)`; the receipt proves only that the loopback request was made, **not which HTTP client was used**.
-5. Start the game and attempt CH08-M06/M07/M08/M10, or the later CH10-M06. Press **RUN CONTROLLED WEB LAB** in each relevant assessment to verify the receipt. Submit the assessment separately.
-6. Press `Ctrl+C` in Terminal A to stop the portal. The receipt is valid for seven days and can be repeated at any time.
-
-Only fictional records exist. The HTTP server binds to **127.0.0.1**; do not change it to `0.0.0.0` or forward its port to other hosts. This is a **deliberately vulnerable lab**, not a production application. For a detailed guide, read `docs/WEB_BURP_LAB_GUIDE.md`.
-
-## New storyline and final mission
-
-Chapters 8–10 cover web sessions and object authorization, incident investigation, and final cross-source correlation. In the **Chapter 10 Story Archive**, choose a **disclosure route** (independent oversight, broad release, or restricted review). This is required before completing CH10-M10. The final story scene shows one of three outcomes, determined by the selected route and collected chapter evidence. An optional **EXPORT TRAINING DOSSIER** button in the Case Board saves a Markdown report to the local user-data directory. It never automatically contacts a server.
-
-## Automated and manual acceptance
+## Commands
 
 ```bash
-bash scripts/verify_phases_7_to_10.sh
+python -m nulltrace                 # Pygame campaign
+python -m nulltrace --qa            # QA mode, does not save educational progress
+python -m nulltrace --strict        # Environment check
+bash scripts/verify_education_v12.sh # Automated regression + GUI smoke
+python -m nulltrace --lab packet    # Offline synthetic TShark lab
+python -m nulltrace --lab nmap      # Game-owned 127.0.0.1 TCP scan
+python -m nulltrace --lab john      # Generated training hash
+python -m nulltrace --web-lab       # Local HTTP training server for Burp
+python -m nulltrace --lab web       # Checks manual local HTTP receipt
+python -m nulltrace --lab incident  # Synthetic evidence dossier
 ```
 
-Read **`docs/PHASES_07_TO_10_ACCEPTANCE.md`**. The automated gate does not exercise the real Burp GUI or verify Windows builds; the user must conduct those manually. Our packaging environment ran the non-Pygame tests only and did **not** perform your local Burp interaction.
+## Safety boundaries
 
-## Project layout
+No automatic home-network scanning or credential collection. The virtual terminal never launches shell commands; Nmap is restricted to a temporary localhost listener, TShark reads a bundled synthetic PCAP, John uses synthetic hashes, and Burp interacts only with a user-launched localhost training server. The v1.2 verification script does not launch any real security tools.
 
-- `content/missions/catalog.json`: unchanged 100 stable IDs with updated content status.
-- `content/missions/assessments_01_07.json`: original 70 preserved assessments.
-- `content/missions/assessments_08_10.json`: 30 new individual assessments.
-- `content/chapters/lesson_notes_08_10.json`: 30 concise topic explanations for newer chapters.
-- `src/nulltrace/labs/web_training.py`: explicit loopback synthetic web training portal.
-- `src/nulltrace/labs/incident.py`: offline forensic-training fixture validator.
-- `src/nulltrace/investigations/report.py`: Markdown evidence report export.
-- `src/nulltrace/story/endings.py`: deterministic branching narrative outcomes.
-- `tests/`: legacy and current regression tests.
-- `docs/`: full original master design and explicit release gap reports.
+## Engineering notes
 
-## Honest scope limitations
+- Python >=3.10, pygame-ce 2.5.8, pytest; tested on Ubuntu by user in prior version with Python 3.14.4.
+- Mission catalog: `content/missions/catalog.json`; assessments unchanged.
+- Nine-stage declarative lesson content: `content/lessons/lesson_stages_01_10.json`.
+- Lesson library validation: `src/nulltrace/education/lessons.py`.
+- UI: `src/nulltrace/ui/app.py`.
+- New saved stage and note tables: `src/nulltrace/persistence/store.py`.
+- Acceptance: `docs/EDUCATION_V1_1_TO_V1_2_ACCEPTANCE.md`.
+- Original GDD: `docs/NULLTRACE_Master_System_Design_v1.0.md`.
 
-The campaign has 100 individually graded questions and some controlled tool labs. It **does not yet** provide 100 cinematic scenes, full nine-stage interactive lessons for each mission, deeply interactive real-world tool exercises in every chapter, voice acting, rich original art, or a finished accessibility review. The web lab checks a self-reported localhost request; it cannot prove Burp was used. The incident correlation is performed on a bundled **fictional** case dossier. Python source and tests are packaged; Linux/Windows standalone executables remain future release engineering work. See `docs/IMPLEMENTATION_STATUS_v1rc1.md`.
+## Known gaps
+
+The lesson experience includes explanatory content, a chapter-level flow visualization, one practice check and an ungraded mini-project reflection. It does **not** yet provide bespoke simulations for each of the 100 missions, distinct independent mastery tests, fully staged cinematics, original animated environments, professional voice performances, or standalone multi-platform installers. These are subjects for subsequent design/release stages. **Do not claim v1.2 is production-complete before manual acceptance.**

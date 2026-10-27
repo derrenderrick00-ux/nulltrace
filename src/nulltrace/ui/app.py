@@ -1,4 +1,4 @@
-"""Pygame-CE desktop UI for NULLTRACE release candidate v1.0.0-rc1.
+"""Pygame-CE desktop UI for NULLTRACE education v1.2.0-rc1.
 
 No game action launches an unrestricted shell command. Real labs are explicit,
 loopback-only or offline, and isolated from simulated terminal input.
@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 
 from nulltrace.core.content import Curriculum
+from nulltrace.education.lessons import LessonLibrary, STAGE_KEYS
 from nulltrace.core.session import Session
 from nulltrace.persistence.store import Store
 from nulltrace.story.scenes import CHAPTERS, INTRO
@@ -26,7 +27,7 @@ class Game:
         self.pg=pygame
         pygame.init()
         self.screen=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE)
-        pygame.display.set_caption('NULLTRACE | The Cybersecurity Chronicles — v1.0.0 RC1')
+        pygame.display.set_caption('NULLTRACE | Nine-stage Academy — v1.2 RC1')
         self.canvas=pygame.Surface((WIDTH,HEIGHT))
         self.f={
             'small':pygame.font.SysFont('DejaVu Sans',15),
@@ -36,6 +37,10 @@ class Game:
         }
         self.store=store or Store()
         self.curriculum=curriculum or Curriculum()
+        self.lessons=LessonLibrary(self.curriculum.root,self.curriculum)
+        self.stage=0;self.lesson_scroll=0;self.diagram_hop=0
+        self.practice_feedback='';self.practice_ok=False
+        self.field_note='';self.qa_stages={}
         self.qa=qa
         self.page='home'
         self.chapter=1;self.mid='CH01-M01'
@@ -112,7 +117,7 @@ class Game:
         self.canvas.fill(BG)
         self._write('N U L L T R A C E',28,22,'large',ACCENT)
         self._write('THE CYBERSECURITY CHRONICLES',31,65,'small',MUTED)
-        self._write('PHASES 7–10  •  v1.0 RC1  •  100 MISSIONS',820,20,'small',GOLD)
+        self._write('ACADEMY v1.2 RC1  •  900 LESSON STAGES',820,20,'small',GOLD)
         self.pg.draw.line(self.canvas,BORDER,(24,96),(1156,96),1)
         if self.session:
             profile=self.store.player(self.profile_id)
@@ -121,9 +126,9 @@ class Game:
 
     def _sidebar(self):
         self._rect(23,112,218,531,PANEL,14)
-        links=[('COMMAND CENTER','home'),('STORY ARCHIVE','story'),('CHAPTERS','chapters'),('SAFE TERMINAL','terminal'),('NETWORK MAP','network'),('EVIDENCE BOARD','evidence'),('TOOL LABS','tools'),('OPERATOR','profile')]
+        links=[('COMMAND CENTER','home'),('STORY ARCHIVE','story'),('CHAPTERS','chapters'),('ACADEMY','academy'),('SAFE TERMINAL','terminal'),('NETWORK MAP','network'),('EVIDENCE BOARD','evidence'),('TOOL LABS','tools'),('OPERATOR','profile')]
         for i,(name,page) in enumerate(links):
-            self._button(name,35,128+i*59,194,44,lambda p=page:self.navigate(p),True,self.page==page)
+            self._button(name,35,128+i*52,194,44,lambda p=page:self.navigate(p),True,self.page==page)
         self._write('OFFLINE-FIRST / LOCAL SAVES',35,616,'small',MUTED,max_width=190)
 
     def _panel(self,title,kicker=''):
@@ -144,7 +149,7 @@ class Game:
         self.buttons=[]
         self._header();self._sidebar()
         getattr(self,'draw_'+self.page)()
-        if self.error:self._write(self.error,270,614,'small',BAD,max_width=850)
+        if self.error and self.page!='lesson':self._write(self.error,270,614,'small',BAD,max_width=850)
         if self.notice:self._write(self.notice,270,614,'small',GOOD,max_width=850)
         self._footer()
         newsize=self.screen.get_size()
@@ -171,7 +176,7 @@ class Game:
         self._button('VIEW YOUR ENDING' if all_done else 'CONTINUE MISSION',290,477,270,48,lambda m=upcoming.id:self.navigate('ending') if all_done else self.open_mission(m),highlight=True)
         self._button('BROWSE CHAPTERS',578,477,270,48,lambda:self.navigate('chapters'))
         self._button('OPERATIONS FLOOR',864,477,242,48,lambda:self.navigate('operator_room'))
-        self._write('Design status: complete assessment campaign prototype. Cinematic dialogue, final art and manual labs need acceptance.',289,566,'small',MUTED,max_width=805,max_lines=2)
+        self._write('Nine-stage learning expansion. Story cinematics and detailed lab simulations remain future work.',289,566,'small',MUTED,max_width=805,max_lines=2)
 
     def draw_profile(self):
         self._panel('CREATE / SELECT OPERATOR','Alex / Ghost / hoodie are editable examples, never mandatory identities.')
@@ -246,10 +251,31 @@ class Game:
             label=f'CH {n:02d}  {title}   {count}/10'
             self._button(label,x,y,405,59,lambda n=n:self._open_chapter(n),enabled=True)
 
+    def draw_academy(self):
+        self._panel('CYBERSECURITY ACADEMY / 100 LESSONS',
+                    'Each mission has 9 independent study stages. Previous mission completions are preserved.')
+        if self.qa:
+            counts={n:0 for n in range(1,11)}
+            for (pid,mid),steps in self.qa_stages.items():
+                if pid==self.profile_id:counts[int(mid[2:4])]+=len(steps)
+        else:counts=self.store.lesson_summary(self.profile_id)
+        total=sum(counts.values())
+        self._write(f'RECORDED STAGES: {total}/900  •  Lesson review is separate from mission competence.',
+                    289,198,'normal',GOOD,max_width=780)
+        for n in range(1,11):
+            y=230+(n-1)*36
+            chapter=CHAPTERS[n][0]
+            count=counts.get(n,0)
+            self._write(f'CH{n:02d} {chapter}',292,y,'small',TEXT,max_width=330)
+            self._rect(630,y+1,266,15,BORDER,3,border=None)
+            if count:self._rect(630,y+1,int(266*count/90),15,GOOD,3,border=None)
+            self._write(f'{count}/90',917,y-2,'small',GOLD)
+            self._button('OPEN',1003,y-8,96,31,lambda n=n:self._open_chapter(n))
+
     def draw_missions(self):
         chapter=self.chapter
         title=CHAPTERS[chapter][0]
-        self._panel(f'CHAPTER {chapter:02d} — {title}','Training missions • lesson first, then assessment • prerequisites are enforced.')
+        self._panel(f'CHAPTER {chapter:02d} — {title}','Nine-stage lessons + independent assessment • old mission completions remain intact.')
         completed=self.session.completed
         for index,m in enumerate(self.curriculum.chapter(chapter)):
             y=194+index*43
@@ -263,27 +289,161 @@ class Game:
         if not self.session.can_start(mid):return
         self.mid=mid;self.chapter=int(mid[2:4]);self.page='lesson'
         self.selected_answer=None;self.correct=False;self.feedback='';self.notice=''
+        done=self._done_stages(mid)
+        self.stage=next((i for i in range(9) if i not in done),8)
+        self.lesson_scroll=0;self.diagram_hop=0
+        self.practice_feedback='';self.practice_ok=6 in done
+        self.field_note='' if self.qa else self.store.lesson_note(self.profile_id,mid)
+
+    def _done_stages(self,mid):
+        if not self.session:return set()
+        if self.qa:return self.qa_stages.get((self.profile_id,mid),set())
+        return self.store.stages_done(self.profile_id,mid)
+
+    def _complete_stage(self,stage=None,advance=True):
+        ix=self.stage if stage is None else stage
+        if ix==6 and not self.practice_ok:
+            self.error='Answer the practice check before marking this stage complete.'
+            return
+        if ix==7 and len(self.field_note.strip())<20:
+            self.error='Write a short evidence note (20+ characters) before continuing.'
+            return
+        if self.qa:
+            self.qa_stages.setdefault((self.profile_id,self.mid),set()).add(ix)
+        else:
+            if ix==7:self.store.save_lesson_note(self.profile_id,self.mid,self.field_note)
+            self.store.mark_stage(self.profile_id,self.mid,ix)
+        self.error='';self.notice=''
+        if ix<8 and advance:self._go_stage(ix+1)
+
+    def _go_stage(self,index):
+        if not 0<=index<9:return
+        self.stage=index;self.lesson_scroll=0;self.diagram_hop=0
+        self.practice_feedback='';self.practice_ok=6 in self._done_stages(self.mid)
+        self.notice='';self.error=''
+
+    def _practice_answer(self,index):
+        m=self.curriculum.get(self.mid)
+        correct,explanation=self.curriculum.checked_response(m,index)
+        self.practice_feedback=('Correct! Stage recorded. ' if correct else 'Try again after reviewing stage 3. ')+explanation
+        self.practice_ok=correct
+        if correct:self._complete_stage(6,advance=False)
+
+    def _wrap_lines(self,message,font,max_width):
+        face=self.f[font]
+        result=[]
+        for paragraph in str(message).split('\n'):
+            if not paragraph.strip():
+                result.append('');continue
+            line=''
+            for word in paragraph.split():
+                # Break overly long non-space tokens, don't lose evidence values.
+                segments=[]
+                remaining=word
+                while remaining and face.size(remaining)[0]>max_width:
+                    hi=len(remaining)
+                    lo=1
+                    while lo<hi:
+                        mid=(lo+hi+1)//2
+                        if face.size(remaining[:mid])[0]<=max_width:lo=mid
+                        else:hi=mid-1
+                    segments.append(remaining[:max(1,lo)])
+                    remaining=remaining[max(1,lo):]
+                if remaining:segments.append(remaining)
+                for part in segments:
+                    trial=f'{line} {part}'.strip()
+                    if face.size(trial)[0]<=max_width:line=trial
+                    else:
+                        if line:result.append(line)
+                        line=part
+            if line:result.append(line)
+        return result
+
+    def _lesson_textbox(self,message,x,y,width,height,font='normal'):
+        self._rect(x-11,y-10,width+22,height+20,(12,31,44),8)
+        clip=self.canvas.get_clip()
+        self.canvas.set_clip(self.pg.Rect(x,y,width,height))
+        line_height=self.f[font].get_linesize()+6
+        lines=self._wrap_lines(message,font,width-15)
+        maxscroll=max(0,len(lines)*line_height-height+8)
+        self.lesson_scroll=max(0,min(self.lesson_scroll,maxscroll))
+        for i,line in enumerate(lines):
+            yy=y+i*line_height-self.lesson_scroll
+            if y-line_height<yy<y+height:self._write(line,x,yy,font,TEXT,max_width=width-15,max_lines=1)
+        self.canvas.set_clip(clip)
+        if maxscroll:
+            self._write(f'SCROLL: {self.lesson_scroll//line_height+1} / {max(1,len(lines))} lines',x+width-233,y+height-18,'small',GOLD)
+
+    def _lesson_diagram(self,lesson):
+        nodes=lesson.diagram
+        left,right=310,1073
+        cy=465
+        count=len(nodes)
+        xs=[int(left+i*(right-left)/max(1,count-1)) for i in range(count)]
+        for j in range(count-1):
+            self.pg.draw.line(self.canvas,GOOD if j<self.diagram_hop else BORDER,(xs[j]+20,cy),(xs[j+1]-20,cy),4)
+        for i,label in enumerate(nodes):
+            active=i<=self.diagram_hop
+            self.pg.draw.circle(self.canvas,ACCENT if active else CARD,(xs[i],cy),23)
+            self.pg.draw.circle(self.canvas,BORDER,(xs[i],cy),23,2)
+            self._write(str(i+1),xs[i]-5,cy-9,'normal',BG if active else TEXT)
+            # Short labels never overlap neighboring diagram marks.
+            words=self._wrap_lines(label,'small',min(160,int((right-left)/count)+14))
+            for ln,text in enumerate(words[:2]):self._write(text,xs[i]-min(65,len(text)*4),cy+29+ln*18,'small',TEXT,max_width=144,max_lines=1)
 
     def draw_lesson(self):
         m=self.curriculum.get(self.mid)
-        self._panel(f'{m.id} — {m.title}','OPERATION FILE / LEARN → PRACTICE → INVESTIGATE')
-        self._rect(282,207,821,90,CARD)
-        self._write('LEARNING OBJECTIVE',299,219,'small',GOLD)
-        self._write(m.objective,299,246,'normal',TEXT,max_width=770,max_lines=2)
-        self._rect(282,312,821,120,CARD)
-        self._write('YOUR TASK',300,328,'small',GOLD)
-        self._write(m.activity,300,357,'normal',TEXT,max_width=765,max_lines=3)
-        self._write(f'ASSESSMENT: {m.verification}',300,402,'small',MUTED,max_width=770,max_lines=2)
-        if m.lesson_note:
-            self._write('KEY IDEA: '+m.lesson_note,291,451,'small',MUTED,max_width=780,max_lines=3,line_height=21)
-        if m.id in LAB_MISSIONS:
-            lab_kind=LAB_MISSIONS[m.id]
-            if not m.lesson_note:self._write(f'REQUIRES CONTROLLED {lab_kind.upper()} LAB. Select RUN LAB in the knowledge check.',292,455,'small',ACCENT,max_width=790,max_lines=2)
-        elif not m.lesson_note:
-            self._write('Study the learning objective, use the optional simulator, then choose assessment.',291,456,'small',MUTED,max_width=780,max_lines=2)
-        self._button('BEGIN ASSESSMENT',292,527,306,49,lambda:self.navigate('assessment'),highlight=True)
-        self._button('SAFE TERMINAL',618,527,224,49,lambda:self.navigate('terminal'))
-        self._button('CHAPTER MISSIONS',865,527,230,49,lambda:self.navigate('missions'))
+        lesson=self.lessons.get(m.id)
+        stage=lesson.stages[self.stage]
+        done=self._done_stages(m.id)
+        self._panel(f'{m.id} — {m.title}',
+                    f'ACADEMY  •  {len(done)}/9 STAGES RECORDED  •  {lesson.focus}  •  Scroll mouse wheel for longer explanations')
+        for i in range(9):
+            label=('✓' if i in done else str(i+1))
+            self._button(label,286+i*90,203,80,43,lambda i=i:self._go_stage(i),highlight=self.stage==i)
+        self._write(stage['title'],292,264,'medium',GOLD,max_width=820)
+        if self.stage==3:
+            self._lesson_textbox(stage['body'],297,306,793,102,'normal')
+            self._lesson_diagram(lesson)
+            self._button('NEXT HOP' if self.diagram_hop<len(lesson.diagram)-1 else 'REPLAY FLOW',284,538,199,35,
+                         self._advance_diagram)
+            self._write(f'{self.diagram_hop+1}/{len(lesson.diagram)} path nodes',506,544,'small',MUTED)
+        elif self.stage==6:
+            self._lesson_textbox(stage['body'],299,306,790,95,'normal')
+            for i,answer in enumerate(m.assessment['choices']):
+                self._button(f'{i+1}. {answer}',294,410+i*46,802,40,lambda i=i:self._practice_answer(i))
+            if self.practice_feedback:
+                self._write(self.practice_feedback,295,554,'small',GOOD if self.practice_ok else BAD,max_width=785,max_lines=2)
+        elif self.stage==7:
+            self._lesson_textbox(stage['body'],297,302,793,146,'normal')
+            self._rect(289,456,803,57,CARD,7,ACCENT)
+            self._write(('> '+self.field_note[-104:]+'▌') if self.field_note else 'Click here and type a short observation + uncertainty…',
+                        303,472,'small',TEXT if self.field_note else MUTED,max_width=760,max_lines=2)
+            self.buttons.append((self.pg.Rect(289,456,803,57),lambda:self._focus_note()))
+            self._write(self.error or f'{len(self.field_note)}/1200 characters · self-reflection, not graded evidence',299,519,'small',BAD if self.error else MUTED)
+            self._button('SAVE FIELD NOTE',296,546,244,34,self._save_field_note,highlight=True)
+        else:
+            self._lesson_textbox(stage['body'],297,307,793,233,'normal')
+        if self.stage not in (6,7):
+            self._write(stage['action'],294,550,'small',MUTED,max_width=801,max_lines=1)
+        if self.stage>0:self._button('◀ PREVIOUS',288,591,180,39,lambda:self._go_stage(self.stage-1))
+        if self.stage not in (6,7,3) and self.stage not in done:
+            self._button('MARK STAGE COMPLETE',483,591,277,39,self._complete_stage,highlight=True)
+        elif self.stage==3 and self.diagram_hop==len(lesson.diagram)-1 and 3 not in done:
+            self._button('RECORD FLOW REVIEW',483,591,277,39,self._complete_stage,highlight=True)
+        if self.stage<8:self._button('NEXT STAGE ▶',776,591,160,39,lambda:self._go_stage(self.stage+1))
+        else:self._button('MISSION ASSESSMENT',757,591,208,39,lambda:self.navigate('assessment'),highlight=True)
+        self._button('MISSIONS',984,591,111,39,lambda:self.navigate('missions'))
+
+    def _advance_diagram(self):
+        nodes=self.lessons.get(self.mid).diagram
+        self.diagram_hop=(self.diagram_hop+1)%len(nodes)
+
+    def _focus_note(self):
+        self.focus='field_note'
+
+    def _save_field_note(self):
+        self._complete_stage(7)
 
     def draw_assessment(self):
         m=self.curriculum.get(self.mid);a=m.assessment
@@ -505,8 +665,17 @@ class Game:
         if event.type == pg.QUIT:self.running=False;return
         if event.type == pg.KEYDOWN:
             if event.key==pg.K_ESCAPE:
-                self.page='home' if self.page in ('chapters','profile','tools','story','terminal','network','evidence','tool_result','operator_room','disclosure','ending') else 'chapters'
+                self.page='home' if self.page in ('chapters','profile','tools','story','terminal','network','evidence','tool_result','operator_room','disclosure','ending','academy') else 'chapters'
                 return
+            if self.page=='lesson':
+                if event.key==pg.K_PAGEUP:
+                    self.lesson_scroll=max(0,self.lesson_scroll-170);return
+                if event.key==pg.K_PAGEDOWN:
+                    self.lesson_scroll+=170;return
+                if self.stage==6 and event.key in (pg.K_1,pg.K_2,pg.K_3):
+                    self._practice_answer(event.key-pg.K_1);return
+                if self.stage==7 and event.key in (pg.K_RETURN,pg.K_KP_ENTER):
+                    self._save_field_note();return
             if self.page=='operator_room' and event.key==pg.K_m:
                 self.reduced_motion=not self.reduced_motion
                 return
@@ -531,7 +700,11 @@ class Game:
             if self.page=='profile':
                 value=getattr(self,self.focus)
                 if len(value)<32 and all(ord(ch)>=32 for ch in event.text):setattr(self,self.focus,(value+event.text)[:32])
+            if self.page=='lesson' and self.stage==7 and len(self.field_note)<1200 and all(ord(ch)>=32 for ch in event.text):
+                self.field_note=(self.field_note+event.text)[:1200]
             if self.page=='terminal' and len(self.command)<160 and all(ord(ch)>=32 for ch in event.text):self.command=(self.command+event.text)[:160]
+        if event.type==pg.MOUSEWHEEL and self.page=='lesson':
+            self.lesson_scroll=max(0,self.lesson_scroll-event.y*57)
         if event.type==pg.MOUSEBUTTONDOWN and event.button==1:
             w,h=self.screen.get_size();mx=int(event.pos[0]*WIDTH/w);my=int(event.pos[1]*HEIGHT/h)
             for r,action in reversed(self.buttons):

@@ -13,27 +13,9 @@ dist/
 .userdata/
 .coverage
 
-# Local environments and private data
-.venv/
-.env
+# Local private project data and credentials
 .env.*
 !.env.example
-
-# Database and runtime state
-*.db
 *.sqlite
-*.sqlite3
 *.pot
-*.log
-.saves/
-.userdata/
-
-# Python generated files
-__pycache__/
-.pytest_cache/
-*.egg-info/
-build/
-dist/
-
-# Local backups
 nulltrace-backups/

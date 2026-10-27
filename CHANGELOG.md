@@ -30,3 +30,13 @@
 - Extended story archive, chapters, evidence board, tool list, and graphical acceptance coverage.
 - Kept existing practical Nmap/TShark/John adapters and character animations unchanged.
 - Added automated and manual Phase 7–10 release gates. This is a **candidate**, not accepted stable 1.0.
+
+## 1.2.0-rc1 — Nine-stage Academy (v1.1 foundation + v1.2 content)
+
+- Added strict versioned declarative nine-stage lesson library covering all 100 original mission IDs (900 stages).
+- Authored mission-specific objectives, terminology, guided explanation, conceptual illustration, worked example, real-world application, practice check, topic mini-project and integrated operation.
+- Added Academy chapter counters, lesson stage tabs, scrolling instructional content, interactive chapter path visualizations, practice feedback and a short user-authored evidence note.
+- Added **additive** SQLite schema v2 migration for stage tracking and field notes without modifying original mission progress, choices or assessments.
+- QA keeps education practice in memory and does not modify persistent player progress.
+- Preserved four existing controlled laboratory integrations, initial game loop, assessment gates and 100 mission identifiers.
+- New source and schema tests; real Ubuntu Pygame UI acceptance required. This is not the full cinematic production release.
