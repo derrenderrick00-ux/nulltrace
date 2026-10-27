@@ -1,0 +1,1300 @@
+[
+  {
+    "id": "CH01-M01",
+    "chapter_id": "CH01",
+    "title": "Welcome to Meridian",
+    "learning_objective": "Cybersecurity ethics and authorization",
+    "activity": "Categorize authorized versus prohibited actions in a guided briefing",
+    "verification": "Scenario classification rubric",
+    "mode": "lesson",
+    "prerequisites": [],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M02",
+    "chapter_id": "CH01",
+    "title": "Assets Under Threat",
+    "learning_objective": "Assets, threats, vulnerabilities, risk, CIA triad",
+    "activity": "Annotate incident cards with asset, threat and consequence",
+    "verification": "At least four correctly justified identifications",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M03",
+    "chapter_id": "CH01",
+    "title": "Inside the Machine",
+    "learning_objective": "Hardware, OS, processes and services",
+    "activity": "Inspect a simulated workstation and process list",
+    "verification": "Locate operating system, network adapter and service role",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M04",
+    "chapter_id": "CH01",
+    "title": "The Linux Filesystem",
+    "learning_objective": "Paths, files, directories and permissions",
+    "activity": "Navigate a mock filesystem in the game terminal",
+    "verification": "Reach specified file without privileged commands",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M05",
+    "chapter_id": "CH01",
+    "title": "The Black Terminal",
+    "learning_objective": "pwd, ls, cd, cat, help, command structure",
+    "activity": "Execute bounded simulated shell commands",
+    "verification": "Correct commands and descriptions of output",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M06",
+    "chapter_id": "CH01",
+    "title": "Who Has Access?",
+    "learning_objective": "Accounts, file permissions, least privilege",
+    "activity": "Adjust fictional read permissions on training files",
+    "verification": "Reach intended access policy without overgranting",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M07",
+    "chapter_id": "CH01",
+    "title": "The System Remembers",
+    "learning_objective": "Log timestamps, severity, provenance",
+    "activity": "Inspect synthetic diagnostic logs",
+    "verification": "Order events correctly with explicit uncertainty",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH01-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M08",
+    "chapter_id": "CH01",
+    "title": "Connected Machines",
+    "learning_objective": "LAN basics, clients, servers, switches and routers",
+    "activity": "Connect labeled devices in a topology exercise",
+    "verification": "Produce valid client-to-server path",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M09",
+    "chapter_id": "CH01",
+    "title": "First Contact",
+    "learning_objective": "IP addresses, interfaces, ping and troubleshooting",
+    "activity": "Check configured addresses and simulated ping results",
+    "verification": "Correctly diagnose a reachability issue",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH01-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH01-M10",
+    "chapter_id": "CH01",
+    "title": "The Unknown Transmission",
+    "learning_objective": "Integrate Linux, logs and connectivity reasoning",
+    "activity": "Repair workstation 07 and examine MIRROR-07 log reference",
+    "verification": "Demonstrate stable simulated connectivity and support report",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH01-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M01",
+    "chapter_id": "CH02",
+    "title": "Networks Everywhere",
+    "learning_objective": "LAN, WAN, Internet and addressing domains",
+    "activity": "Classify sample network diagrams",
+    "verification": "Correctly distinguish network boundaries",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH01-M10"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M02",
+    "chapter_id": "CH02",
+    "title": "Signals and Cables",
+    "learning_objective": "Copper, fiber, radio, latency and noise",
+    "activity": "Compare fictional physical links",
+    "verification": "Explain medium tradeoffs accurately",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH02-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M03",
+    "chapter_id": "CH02",
+    "title": "The Switching Room",
+    "learning_objective": "Switching, broadcast domains, topologies",
+    "activity": "Wire a simulated switch fabric",
+    "verification": "Frames reach correct local devices",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH02-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M04",
+    "chapter_id": "CH02",
+    "title": "Machine Identities",
+    "learning_objective": "Ethernet frames and MAC addressing",
+    "activity": "Trace destination MAC decisions",
+    "verification": "Select destination or gateway MAC correctly",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH02-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M05",
+    "chapter_id": "CH02",
+    "title": "Address Required",
+    "learning_objective": "IPv4, prefixes and host addressing",
+    "activity": "Assign IPv4 addresses in an isolated network",
+    "verification": "No collisions and valid host prefixes",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH02-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M06",
+    "chapter_id": "CH02",
+    "title": "The Network Mask",
+    "learning_objective": "CIDR prefixes and netmasks",
+    "activity": "Solve subnet membership exercises",
+    "verification": "Correct network and broadcast boundaries",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH02-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M07",
+    "chapter_id": "CH02",
+    "title": "Divide the Network",
+    "learning_objective": "Subnet allocation and address planning",
+    "activity": "Partition a fictional office network",
+    "verification": "Subnets are nonoverlapping and sized correctly",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH02-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M08",
+    "chapter_id": "CH02",
+    "title": "Beyond IPv4",
+    "learning_objective": "IPv6 notation and address scopes",
+    "activity": "Label example IPv6 addresses",
+    "verification": "Correctly classify sample address scopes",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH02-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M09",
+    "chapter_id": "CH02",
+    "title": "Mapping Meridian",
+    "learning_objective": "Topology documentation and endpoint inventory",
+    "activity": "Produce device-node and link map",
+    "verification": "Map conforms to given inventory",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH02-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH02-M10",
+    "chapter_id": "CH02",
+    "title": "The Hidden Segment",
+    "learning_objective": "Combined layer-2 and IP investigation",
+    "activity": "Find incorrectly placed simulated network endpoint",
+    "verification": "Identify and correct segment misconfiguration",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH02-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M01",
+    "chapter_id": "CH03",
+    "title": "Seven Layers",
+    "learning_objective": "OSI and TCP-IP mapping",
+    "activity": "Match packet functions to layers",
+    "verification": "Accurate conceptual layer mapping",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH02-M10"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M02",
+    "chapter_id": "CH03",
+    "title": "Encapsulation",
+    "learning_objective": "Frames, packets, segments and headers",
+    "activity": "Animate source-to-destination encapsulation",
+    "verification": "Arrange wrappers in correct order",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M03",
+    "chapter_id": "CH03",
+    "title": "The Port Number",
+    "learning_objective": "Sockets and service port concepts",
+    "activity": "Match service sessions to endpoints",
+    "verification": "Correct five-tuple interpretation",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M04",
+    "chapter_id": "CH03",
+    "title": "Two Messengers",
+    "learning_objective": "TCP and UDP characteristics",
+    "activity": "Select transport characteristics for cases",
+    "verification": "Justified choices, not rote keywords",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH03-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M05",
+    "chapter_id": "CH03",
+    "title": "The Handshake",
+    "learning_objective": "SYN, SYN-ACK, ACK and sequence logic",
+    "activity": "Reassemble simulated TCP establishment",
+    "verification": "Correct message and endpoint order",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M06",
+    "chapter_id": "CH03",
+    "title": "What's in a Name?",
+    "learning_objective": "DNS query/answer types and caching",
+    "activity": "Trace a synthetic domain lookup",
+    "verification": "Identify question, answer and caching role",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M07",
+    "chapter_id": "CH03",
+    "title": "Automatic Addressing",
+    "learning_objective": "DHCP lifecycle and lease basics",
+    "activity": "Investigate a simulated lease exchange",
+    "verification": "Correctly identify assignment failure",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M08",
+    "chapter_id": "CH03",
+    "title": "Who Owns This IP?",
+    "learning_objective": "ARP request/response on local segments",
+    "activity": "Diagnose a simulated ARP mapping issue",
+    "verification": "Correct local resolution explanation",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M09",
+    "chapter_id": "CH03",
+    "title": "The Web Connection",
+    "learning_objective": "HTTP, HTTPS and TLS overview",
+    "activity": "Compare visible metadata across two sessions",
+    "verification": "Do not claim encrypted content is readable",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH03-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH03-M10",
+    "chapter_id": "CH03",
+    "title": "Protocol Anomaly",
+    "learning_objective": "Correlate DNS, ARP, TCP and DHCP records",
+    "activity": "Reconstruct a synthetic protocol timeline",
+    "verification": "Supported finding and MIRROR clue recovered",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH03-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M01",
+    "chapter_id": "CH04",
+    "title": "The Default Gateway",
+    "learning_objective": "Local versus off-subnet forwarding",
+    "activity": "Route packets through a gateway exercise",
+    "verification": "Correct next-hop selection",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH03-M10"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M02",
+    "chapter_id": "CH04",
+    "title": "Routing Decisions",
+    "learning_objective": "Longest-prefix-match and routing tables",
+    "activity": "Select routes from a synthetic table",
+    "verification": "Choose most specific matching route",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH04-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M03",
+    "chapter_id": "CH04",
+    "title": "Translated Identities",
+    "learning_objective": "NAT and address translation",
+    "activity": "Trace a simulated translated flow",
+    "verification": "Correct internal/external tuple mapping",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH04-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M04",
+    "chapter_id": "CH04",
+    "title": "Following the Route",
+    "learning_objective": "TTL, traceroute, path uncertainty",
+    "activity": "Read supplied traceroute outputs",
+    "verification": "Distinguish a hop from physical geography",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH04-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M05",
+    "chapter_id": "CH04",
+    "title": "Control Messages",
+    "learning_objective": "ICMP error and diagnostic purposes",
+    "activity": "Explain synthetic ICMP results",
+    "verification": "Accurate interpretation without assuming reachability",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH04-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M06",
+    "chapter_id": "CH04",
+    "title": "The Slow Connection",
+    "learning_objective": "Latency, jitter, loss and measurement limits",
+    "activity": "Inspect controlled trace metrics",
+    "verification": "Separate latency from throughput conclusions",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH04-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M07",
+    "chapter_id": "CH04",
+    "title": "The Broken Route",
+    "learning_objective": "Routing mistakes and recovery",
+    "activity": "Repair a misconfigured route in simulation",
+    "verification": "Target path restored using minimal change",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH04-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M08",
+    "chapter_id": "CH04",
+    "title": "Names Versus Paths",
+    "learning_objective": "DNS versus routing fault isolation",
+    "activity": "Investigate two failure reports",
+    "verification": "Accurately attribute each root cause",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH04-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M09",
+    "chapter_id": "CH04",
+    "title": "Tracing Evidence",
+    "learning_objective": "Correlating independent route observations",
+    "activity": "Compare several synthetic paths",
+    "verification": "Support hypothesis with multiple observations",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH04-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH04-M10",
+    "chapter_id": "CH04",
+    "title": "Ghost Route",
+    "learning_objective": "Integrated diagnostics and time correlation",
+    "activity": "Resolve a deceptive route incident case",
+    "verification": "Evidence-backed report with uncertainty noted",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH04-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M01",
+    "chapter_id": "CH05",
+    "title": "Inside a Packet",
+    "learning_objective": "Capture ethics, payload versus metadata",
+    "activity": "Inspect simulated protocol layers",
+    "verification": "Identify observation scope and privacy constraints",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH04-M10"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M02",
+    "chapter_id": "CH05",
+    "title": "The Capture File",
+    "learning_objective": "PCAP and PCAPNG navigation",
+    "activity": "Open the supplied offline capture",
+    "verification": "Correct packet count and timeframe",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M03",
+    "chapter_id": "CH05",
+    "title": "Packet Anatomy",
+    "learning_objective": "Ethernet, IP, TCP/UDP header fields",
+    "activity": "Find fields in an annotated capture",
+    "verification": "Correct source, destination and fields",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M04",
+    "chapter_id": "CH05",
+    "title": "Filtering the Noise",
+    "learning_objective": "Wireshark display filter fundamentals",
+    "activity": "Filter a provided synthetic capture",
+    "verification": "Submit qualifying frame number and rationale",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M05",
+    "chapter_id": "CH05",
+    "title": "DNS Evidence",
+    "learning_objective": "DNS records and transaction matching",
+    "activity": "Find DNS request-response pair",
+    "verification": "Correct query, response and client endpoint",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M06",
+    "chapter_id": "CH05",
+    "title": "Address Discovery",
+    "learning_objective": "ARP analysis and mapping",
+    "activity": "Identify ARP exchange in sample capture",
+    "verification": "Supported mapping with frame references",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M07",
+    "chapter_id": "CH05",
+    "title": "Following TCP",
+    "learning_objective": "Connection setup, retransmissions",
+    "activity": "Trace a supplied TCP conversation",
+    "verification": "Correct handshake and loss inference limits",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M08",
+    "chapter_id": "CH05",
+    "title": "Encrypted Conversations",
+    "learning_objective": "TLS and HTTP observability",
+    "activity": "Compare synthetic plaintext and encrypted flows",
+    "verification": "Only infer details visible in capture",
+    "mode": "lab",
+    "prerequisites": [
+      "CH05-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M09",
+    "chapter_id": "CH05",
+    "title": "Reconstruct the Flow",
+    "learning_objective": "Correlating packet timestamps and streams",
+    "activity": "Create traffic timeline from fixture",
+    "verification": "Coherent flow timeline with citations",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH05-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH05-M10",
+    "chapter_id": "CH05",
+    "title": "The Missing Packet",
+    "learning_objective": "Formal analysis of omitted capture evidence",
+    "activity": "Write packet-based case report",
+    "verification": "Cited frames, defensible finding, preserved fixture hash",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH05-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M01",
+    "chapter_id": "CH06",
+    "title": "Reconnaissance",
+    "learning_objective": "Discovery versus exploitation",
+    "activity": "Interpret safe host/service inventory",
+    "verification": "Identify reconnaissance scope and purpose",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH05-M10"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M02",
+    "chapter_id": "CH06",
+    "title": "Rules of Engagement",
+    "learning_objective": "Permission, lab range, prohibited targets",
+    "activity": "Review signed fictional assessment scope",
+    "verification": "Select approved loopback-only target",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH06-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M03",
+    "chapter_id": "CH06",
+    "title": "Is Anybody There?",
+    "learning_objective": "Nmap host discovery concepts",
+    "activity": "Review or run lab-approved discovery",
+    "verification": "Correctly interpret responsive local asset",
+    "mode": "lab",
+    "prerequisites": [
+      "CH06-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M04",
+    "chapter_id": "CH06",
+    "title": "Checking the Ports",
+    "learning_objective": "TCP connect-scanning concepts",
+    "activity": "Run bounded approved TCP connect assessment",
+    "verification": "Identify lab service port from XML evidence",
+    "mode": "lab",
+    "prerequisites": [
+      "CH06-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M05",
+    "chapter_id": "CH06",
+    "title": "Open or Filtered?",
+    "learning_objective": "Nmap state semantics and uncertainty",
+    "activity": "Classify supplied scan outputs",
+    "verification": "Correct open, closed, filtered interpretation",
+    "mode": "lab",
+    "prerequisites": [
+      "CH06-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M06",
+    "chapter_id": "CH06",
+    "title": "Identifying Services",
+    "learning_objective": "Banners and service uncertainty",
+    "activity": "Analyze controlled service-identification output",
+    "verification": "Distinguish identification from proof of vulnerability",
+    "mode": "lab",
+    "prerequisites": [
+      "CH06-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M07",
+    "chapter_id": "CH06",
+    "title": "UDP Investigations",
+    "learning_objective": "UDP ambiguity and closed/filtered uncertainty",
+    "activity": "Inspect supplied UDP result examples",
+    "verification": "State limits accurately",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH06-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M08",
+    "chapter_id": "CH06",
+    "title": "Reading the Scan",
+    "learning_objective": "Nmap XML schema and evidence handling",
+    "activity": "Parse a provided XML scan report",
+    "verification": "Correct endpoints, ports and state extraction",
+    "mode": "lab",
+    "prerequisites": [
+      "CH06-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M09",
+    "chapter_id": "CH06",
+    "title": "Exposure Versus Vulnerability",
+    "learning_objective": "Risk triage and verification",
+    "activity": "Classify observations from approved service scan",
+    "verification": "Avoid unjustified compromise claims",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH06-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH06-M10",
+    "chapter_id": "CH06",
+    "title": "The Open Doors",
+    "learning_objective": "Scoped service-exposure assessment",
+    "activity": "Produce bounded local asset/security inventory",
+    "verification": "Valid scope, supported findings and remediation",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH06-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M01",
+    "chapter_id": "CH07",
+    "title": "Identity and Trust",
+    "learning_objective": "Authentication, authorization and sessions",
+    "activity": "Compare account access scenarios",
+    "verification": "Correctly distinguish identity from permission",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH06-M10"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M02",
+    "chapter_id": "CH07",
+    "title": "The Weak Password",
+    "learning_objective": "Entropy misconceptions and common patterns",
+    "activity": "Evaluate fictitious password examples",
+    "verification": "Explain unpredictability and reuse risk",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH07-M01"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M03",
+    "chapter_id": "CH07",
+    "title": "The Hash",
+    "learning_objective": "Hashing versus encryption and verification",
+    "activity": "Match sample hash verification steps",
+    "verification": "Accurate nonreversible-hash explanation",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH07-M02"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M04",
+    "chapter_id": "CH07",
+    "title": "Salt and Cost",
+    "learning_objective": "Salting, KDF work factors and password storage",
+    "activity": "Inspect synthetic hash metadata",
+    "verification": "Recognize unique salt and work factor properties",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH07-M03"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M05",
+    "chapter_id": "CH07",
+    "title": "The Training Vault",
+    "learning_objective": "Synthetic training hashes and scope",
+    "activity": "Load provided fictional hashes",
+    "verification": "Confirm only provided examples are used",
+    "mode": "lab",
+    "prerequisites": [
+      "CH07-M04"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M06",
+    "chapter_id": "CH07",
+    "title": "Meet John",
+    "learning_objective": "John interface and safe audit workflows",
+    "activity": "Read tool help and supplied synthetic fixture",
+    "verification": "Identify audit scope and input format",
+    "mode": "lab",
+    "prerequisites": [
+      "CH07-M05"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M07",
+    "chapter_id": "CH07",
+    "title": "Wordlist Audit",
+    "learning_objective": "Dictionary-based weak-password auditing",
+    "activity": "Audit pre-generated weak local hashes with supplied wordlist",
+    "verification": "Recover only expected synthetic training strings",
+    "mode": "lab",
+    "prerequisites": [
+      "CH07-M06"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M08",
+    "chapter_id": "CH07",
+    "title": "Reading the Results",
+    "learning_objective": "What successful or unsuccessful audit proves",
+    "activity": "Interpret controlled run output",
+    "verification": "Accurate limitations and evidence references",
+    "mode": "lab",
+    "prerequisites": [
+      "CH07-M07"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M09",
+    "chapter_id": "CH07",
+    "title": "Defending Credentials",
+    "learning_objective": "Long unique passwords, MFA, rate limits, secure hashing",
+    "activity": "Propose mitigations for fictional system",
+    "verification": "Concrete layered defense measures",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH07-M08"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH07-M10",
+    "chapter_id": "CH07",
+    "title": "The Forgotten Keys",
+    "learning_objective": "Credential security incident reconstruction",
+    "activity": "Complete permitted synthetic audit report",
+    "verification": "Support weakness claims without real credentials",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH07-M09"
+    ],
+    "content_status": "playable_assessment_v0.6"
+  },
+  {
+    "id": "CH08-M01",
+    "chapter_id": "CH08",
+    "title": "How the Web Works",
+    "learning_objective": "Client-server HTTP roles and TLS",
+    "activity": "Trace browser to service request flow",
+    "verification": "Correct endpoint, transport and trust model",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH07-M10"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M02",
+    "chapter_id": "CH08",
+    "title": "Request and Response",
+    "learning_objective": "HTTP methods, statuses, URLs and bodies",
+    "activity": "Inspect saved HTTP exchanges",
+    "verification": "Correct method, path and status explanation",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH08-M01"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M03",
+    "chapter_id": "CH08",
+    "title": "Hidden in the Headers",
+    "learning_objective": "Headers, content types and origin boundaries",
+    "activity": "Compare safe local request headers",
+    "verification": "Identify relevant headers accurately",
+    "mode": "lab",
+    "prerequisites": [
+      "CH08-M02"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M04",
+    "chapter_id": "CH08",
+    "title": "Sessions and Cookies",
+    "learning_objective": "Session identifiers, cookies, cookie attributes",
+    "activity": "Investigate a simulated session lifecycle",
+    "verification": "Explain login continuity and expiry",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH08-M03"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M05",
+    "chapter_id": "CH08",
+    "title": "The Intermediary",
+    "learning_objective": "HTTP proxy mechanics and scoping",
+    "activity": "Trace request via local proxy",
+    "verification": "Correct proxy role and restrictions",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH08-M04"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M06",
+    "chapter_id": "CH08",
+    "title": "Meet Burp Suite",
+    "learning_objective": "Burp Community proxy setup",
+    "activity": "Intercept request to own loopback training app",
+    "verification": "Show bounded local request in HTTP history",
+    "mode": "lab",
+    "prerequisites": [
+      "CH08-M05"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M07",
+    "chapter_id": "CH08",
+    "title": "Repeating a Request",
+    "learning_objective": "Manual safe HTTP Repeater analysis",
+    "activity": "Change harmless test parameter in local app",
+    "verification": "Interpret response differences accurately",
+    "mode": "lab",
+    "prerequisites": [
+      "CH08-M06"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M08",
+    "chapter_id": "CH08",
+    "title": "Access Boundaries",
+    "learning_objective": "Object-level authorization fundamentals",
+    "activity": "Identify a deliberate local training weakness",
+    "verification": "Explain ownership check failure with safe fixture",
+    "mode": "lab",
+    "prerequisites": [
+      "CH08-M07"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M09",
+    "chapter_id": "CH08",
+    "title": "Securing the Portal",
+    "learning_objective": "Authorization validation and session hardening",
+    "activity": "Patch or select mitigations in simulated server",
+    "verification": "Regression scenario denies unintended access",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH08-M08"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH08-M10",
+    "chapter_id": "CH08",
+    "title": "Behind the Browser",
+    "learning_objective": "End-to-end local web security assessment",
+    "activity": "Write web investigation report with requests/responses",
+    "verification": "Findings reproducible on controlled training app",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH08-M09"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M01",
+    "chapter_id": "CH09",
+    "title": "An Incident Begins",
+    "learning_objective": "Preparation, detection, containment, lessons learned",
+    "activity": "Sequence an incident-response plan",
+    "verification": "Correct stage and tradeoff reasoning",
+    "mode": "lesson",
+    "prerequisites": [
+      "CH08-M10"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M02",
+    "chapter_id": "CH09",
+    "title": "Following the Logs",
+    "learning_objective": "Events and logs across systems",
+    "activity": "Review provided multi-system logs",
+    "verification": "Identify relevant event references",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M01"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M03",
+    "chapter_id": "CH09",
+    "title": "Preserving Evidence",
+    "learning_objective": "Hashes, chain of custody, minimal handling",
+    "activity": "Record fixture identity and provenance",
+    "verification": "Exact fixture hashes and handling note",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH09-M02"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M04",
+    "chapter_id": "CH09",
+    "title": "Building a Timeline",
+    "learning_objective": "Time zones, ordering, clock drift",
+    "activity": "Normalize event timestamps in supplied logs",
+    "verification": "Chronology cites sources and uncertainty",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M03"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M05",
+    "chapter_id": "CH09",
+    "title": "Network and Host",
+    "learning_objective": "Correlating PCAP and host events",
+    "activity": "Link capture with host process events",
+    "verification": "Valid cross-source attribution caveats",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M04"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M06",
+    "chapter_id": "CH09",
+    "title": "Exposure Analysis",
+    "learning_objective": "Inventory versus actual compromise",
+    "activity": "Compare Nmap XML with incident artifacts",
+    "verification": "Appropriate conclusion about service exposure",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M05"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M07",
+    "chapter_id": "CH09",
+    "title": "Web Evidence",
+    "learning_objective": "HTTP logs, session metadata and sequence",
+    "activity": "Correlate sanitized request logs",
+    "verification": "Document observations and limits",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M06"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M08",
+    "chapter_id": "CH09",
+    "title": "True or False Alert?",
+    "learning_objective": "False positives, plausible alternatives",
+    "activity": "Evaluate two evidence-supported hypotheses",
+    "verification": "Select best-supported interpretation",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M07"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M09",
+    "chapter_id": "CH09",
+    "title": "Analyst's Report",
+    "learning_objective": "Writing structured incident reports",
+    "activity": "Produce executive summary plus technical evidence",
+    "verification": "Meets rubric for evidence, uncertainty, mitigation",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M08"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH09-M10",
+    "chapter_id": "CH09",
+    "title": "The Shadow Network",
+    "learning_objective": "Integrated full-case response",
+    "activity": "Reconstruct case and identify manipulated records",
+    "verification": "Complete multi-evidence findings with citations",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH09-M09"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M01",
+    "chapter_id": "CH10",
+    "title": "The Final Briefing",
+    "learning_objective": "Investigation authorization and plan",
+    "activity": "Scope the final evidence review",
+    "verification": "Valid plan and protected data handling",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH09-M10"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M02",
+    "chapter_id": "CH10",
+    "title": "Mapping NEXUS",
+    "learning_objective": "Multi-layer infrastructure topology",
+    "activity": "Reconstruct relevant infrastructure model",
+    "verification": "Topology supported by fixtures",
+    "mode": "simulation",
+    "prerequisites": [
+      "CH10-M01"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M03",
+    "chapter_id": "CH10",
+    "title": "The Traffic Archive",
+    "learning_objective": "Independent traffic analysis",
+    "activity": "Analyze supplied PCAPNG artifacts",
+    "verification": "Correct packet-level findings and caveats",
+    "mode": "lab",
+    "prerequisites": [
+      "CH10-M02"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M04",
+    "chapter_id": "CH10",
+    "title": "The Service Register",
+    "learning_objective": "Interpreting recorded authorized scans",
+    "activity": "Analyze synthetic Nmap XML findings",
+    "verification": "Accurate service inventory and exposure discussion",
+    "mode": "lab",
+    "prerequisites": [
+      "CH10-M03"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M05",
+    "chapter_id": "CH10",
+    "title": "Credential Audit",
+    "learning_objective": "Password-security conclusions",
+    "activity": "Interpret synthetic John audit evidence",
+    "verification": "Evidence-backed credential policy recommendations",
+    "mode": "lab",
+    "prerequisites": [
+      "CH10-M04"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M06",
+    "chapter_id": "CH10",
+    "title": "The MIRROR Portal",
+    "learning_objective": "Session and access-control evaluation",
+    "activity": "Inspect local test app with Burp Community",
+    "verification": "Correctly identify and document lab issue",
+    "mode": "lab",
+    "prerequisites": [
+      "CH10-M05"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M07",
+    "chapter_id": "CH10",
+    "title": "Conflicting Records",
+    "learning_objective": "Cross-source evidence validation",
+    "activity": "Compare logs, packets and reports",
+    "verification": "Detect tampered or omitted evidence",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH10-M06"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M08",
+    "chapter_id": "CH10",
+    "title": "Chain of Truth",
+    "learning_objective": "Final evidence and incident timeline",
+    "activity": "Produce comprehensive structured case record",
+    "verification": "Provenance-complete findings with limitations",
+    "mode": "investigation",
+    "prerequisites": [
+      "CH10-M07"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M09",
+    "chapter_id": "CH10",
+    "title": "The Disclosure Decision",
+    "learning_objective": "Ethics, privacy, public interest, continuity",
+    "activity": "Choose disclosure route and justify safeguards",
+    "verification": "Consistent explicit narrative flags and reasoning",
+    "mode": "decision",
+    "prerequisites": [
+      "CH10-M08"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  },
+  {
+    "id": "CH10-M10",
+    "chapter_id": "CH10",
+    "title": "NULLTRACE",
+    "learning_objective": "All competency domains, integrated capstone",
+    "activity": "Complete final integrated case and ending",
+    "verification": "All required competencies and ending conditions satisfied",
+    "mode": "capstone",
+    "prerequisites": [
+      "CH10-M09"
+    ],
+    "content_status": "playable_assessment_v1.0_candidate"
+  }
+]

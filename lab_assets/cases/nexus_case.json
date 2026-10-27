@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "case_id": "NEXUS-FINAL-01",
+  "scope": "fictional offline analyst training; all addresses and names are synthetic",
+  "timeline": [
+    {"timestamp_utc": "2038-06-17T03:15:00Z", "source": "meridian_gateway", "event": "Routing policy refresh", "reference": "GW-07"},
+    {"timestamp_utc": "2038-06-17T03:17:08Z", "source": "host_07", "event": "DNS query mirror.training.invalid", "reference": "PCAP-3"},
+    {"timestamp_utc": "2038-06-17T03:17:09Z", "source": "mirror_index", "event": "MIRROR-07 monitor correlation recorded", "reference": "MI-07"},
+    {"timestamp_utc": "2038-06-17T03:18:10Z", "source": "incident_summary", "event": "Summary states no MIRROR record exists", "reference": "IS-21"},
+    {"timestamp_utc": "2038-06-17T03:18:19Z", "source": "audit_log", "event": "Summary IS-21 revised without attached technical review", "reference": "AU-18"}
+  ],
+  "official_summary": {"reference": "IS-21", "claim": "No MIRROR reference associated with host_07"},
+  "observed_conflict": {"corroborating_source": "MI-07", "contradicted_claim": "No MIRROR reference associated with host_07"},
+  "limitations": ["Synthetic data does not establish actual persons or institutional wrongdoing.", "A discrepancy does not prove intention or authorship."]
+}

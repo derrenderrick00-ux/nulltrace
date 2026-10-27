@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nulltrace-game"
+version = "1.0.0rc1"
+description = "NULLTRACE: The Cybersecurity Chronicles — Phases 7–10 integrated campaign release candidate"
+readme = "README.md"
+requires-python = ">=3.10,<3.16"
+dependencies = [
+    "pygame-ce==2.5.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<10",
+]
+
+[project.scripts]
+nulltrace-doctor = "nulltrace.doctor:main"
+nulltrace = "nulltrace.launcher:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

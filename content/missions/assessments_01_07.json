@@ -1,0 +1,982 @@
+[
+  {
+    "mission_id": "CH01-M01",
+    "question": "Which action is appropriate when investigating a network?",
+    "choices": [
+      "Scan random public IPs without permission",
+      "Collect coworkers' passwords",
+      "Examine a system you own or have explicit permission to test"
+    ],
+    "answer_index": 2,
+    "explanation": "Authorized scope protects others and defines your responsibilities.",
+    "objective": "Cybersecurity ethics and authorization",
+    "activity": "Categorize authorized versus prohibited actions in a guided briefing",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH01-M02",
+    "question": "Which of these is an asset in a cybersecurity risk assessment?",
+    "choices": [
+      "A company's customer database",
+      "A phishing campaign",
+      "A power outage"
+    ],
+    "answer_index": 0,
+    "explanation": "An asset is something valuable that requires protection.",
+    "objective": "Assets, threats, vulnerabilities, risk, CIA triad",
+    "activity": "Annotate incident cards with asset, threat and consequence",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M03",
+    "question": "What manages hardware resources and runs applications?",
+    "choices": [
+      "Ethernet switch",
+      "Operating system",
+      "DNS resolver"
+    ],
+    "answer_index": 1,
+    "explanation": "The operating system mediates applications, memory, devices and processes.",
+    "objective": "Hardware, OS, processes and services",
+    "activity": "Inspect a simulated workstation and process list",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M04",
+    "question": "Which path denotes a user's home directory on Linux?",
+    "choices": [
+      "/etc/hosts",
+      "/proc/cpuinfo",
+      "/home/alex"
+    ],
+    "answer_index": 2,
+    "explanation": "User home directories are conventionally under /home on many Linux systems.",
+    "objective": "Paths, files, directories and permissions",
+    "activity": "Navigate a mock filesystem in the game terminal",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M05",
+    "question": "Which command prints the current working directory?",
+    "choices": [
+      "pwd",
+      "ls",
+      "cd"
+    ],
+    "answer_index": 0,
+    "explanation": "pwd shows where your simulated shell is currently located.",
+    "objective": "pwd, ls, cd, cat, help, command structure",
+    "activity": "Execute bounded simulated shell commands",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M06",
+    "question": "What does the principle of least privilege require?",
+    "choices": [
+      "Give everyone administrator privileges",
+      "Give only the permissions necessary for a task",
+      "Disable authentication for trusted staff"
+    ],
+    "answer_index": 1,
+    "explanation": "Narrow permissions reduce the damage caused by mistakes and compromises.",
+    "objective": "Accounts, file permissions, least privilege",
+    "activity": "Adjust fictional read permissions on training files",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M07",
+    "question": "What should an investigator record when interpreting a log?",
+    "choices": [
+      "Only the color of the terminal",
+      "Only the username",
+      "Event timestamp and source"
+    ],
+    "answer_index": 2,
+    "explanation": "Timestamps and provenance provide context for incident reconstruction.",
+    "objective": "Log timestamps, severity, provenance",
+    "activity": "Inspect synthetic diagnostic logs",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH01-M08",
+    "question": "What is a switch commonly used for?",
+    "choices": [
+      "Forward Ethernet frames within a local network",
+      "Provide public DNS records for the Internet",
+      "Translate every web page into HTML"
+    ],
+    "answer_index": 0,
+    "explanation": "A switch operates at the link layer to forward frames inside a LAN.",
+    "objective": "LAN basics, clients, servers, switches and routers",
+    "activity": "Connect labeled devices in a topology exercise",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M09",
+    "question": "What does a successful ping generally show?",
+    "choices": [
+      "Every TCP port is open",
+      "ICMP echo communication was possible to the destination",
+      "The system has no vulnerabilities"
+    ],
+    "answer_index": 1,
+    "explanation": "Ping tests an ICMP exchange; firewalls may block it even if a host is available.",
+    "objective": "IP addresses, interfaces, ping and troubleshooting",
+    "activity": "Check configured addresses and simulated ping results",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH01-M10",
+    "question": "A workstation reaches its LAN server but not another subnet; what should you check first?",
+    "choices": [
+      "Reinstall the operating system immediately",
+      "Assume the server was hacked",
+      "Its gateway and route configuration"
+    ],
+    "answer_index": 2,
+    "explanation": "A missing or incorrect gateway can prevent off-subnet communication.",
+    "objective": "Integrate Linux, logs and connectivity reasoning",
+    "activity": "Repair workstation 07 and examine MIRROR-07 log reference",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH02-M01",
+    "question": "Which network is normally limited to a building or local area?",
+    "choices": [
+      "LAN",
+      "WAN",
+      "The global Internet"
+    ],
+    "answer_index": 0,
+    "explanation": "A local area network typically covers a home, classroom, or office.",
+    "objective": "LAN, WAN, Internet and addressing domains",
+    "activity": "Classify sample network diagrams",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH02-M02",
+    "question": "Which medium transports data as pulses of light?",
+    "choices": [
+      "Twisted-pair copper",
+      "Optical fiber",
+      "Wi-Fi radio"
+    ],
+    "answer_index": 1,
+    "explanation": "Fiber optic cables transmit optical signals through glass or plastic.",
+    "objective": "Copper, fiber, radio, latency and noise",
+    "activity": "Compare fictional physical links",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH02-M03",
+    "question": "Which device mainly forwards Ethernet frames using MAC addresses?",
+    "choices": [
+      "Web browser",
+      "DNS server",
+      "Ethernet switch"
+    ],
+    "answer_index": 2,
+    "explanation": "Switches learn MAC addresses to forward frames on a local network.",
+    "objective": "Switching, broadcast domains, topologies",
+    "activity": "Wire a simulated switch fabric",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH02-M04",
+    "question": "What does a MAC address primarily identify?",
+    "choices": [
+      "A network interface at the link layer",
+      "A public DNS domain",
+      "An HTTP response"
+    ],
+    "answer_index": 0,
+    "explanation": "A MAC address is used for link-layer delivery on the local network segment.",
+    "objective": "Ethernet frames and MAC addressing",
+    "activity": "Trace destination MAC decisions",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH02-M05",
+    "question": "Which is an RFC 1918 private IPv4 address?",
+    "choices": [
+      "8.8.8.8",
+      "192.168.1.15",
+      "203.0.113.10"
+    ],
+    "answer_index": 1,
+    "explanation": "192.168.0.0/16 is private IPv4 space; 203.0.113.0/24 is documentation space.",
+    "objective": "IPv4, prefixes and host addressing",
+    "activity": "Assign IPv4 addresses in an isolated network",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH02-M06",
+    "question": "What does /24 mean in IPv4 CIDR notation?",
+    "choices": [
+      "Exactly 24 devices can connect",
+      "The address belongs to port 24",
+      "The first 24 address bits form the network prefix"
+    ],
+    "answer_index": 2,
+    "explanation": "A /24 leaves 8 bits for the host portion.",
+    "objective": "CIDR prefixes and netmasks",
+    "activity": "Solve subnet membership exercises",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH02-M07",
+    "question": "Are 192.168.1.10/24 and 192.168.1.200/24 on the same subnet?",
+    "choices": [
+      "Yes, they share 192.168.1.0/24",
+      "No, because the host numbers differ",
+      "Only if both have the same MAC"
+    ],
+    "answer_index": 0,
+    "explanation": "Applying a /24 mask yields the same network address.",
+    "objective": "Subnet allocation and address planning",
+    "activity": "Partition a fictional office network",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH02-M08",
+    "question": "How long is an IPv6 address?",
+    "choices": [
+      "32 bits",
+      "128 bits",
+      "48 bits"
+    ],
+    "answer_index": 1,
+    "explanation": "IPv6 uses 128-bit addresses; IPv4 uses 32-bit addresses.",
+    "objective": "IPv6 notation and address scopes",
+    "activity": "Label example IPv6 addresses",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH02-M09",
+    "question": "What is the usual role of a default gateway?",
+    "choices": [
+      "Store every file on the LAN",
+      "Generate every MAC address",
+      "Forward packets to destinations outside the local subnet"
+    ],
+    "answer_index": 2,
+    "explanation": "A gateway routes traffic toward networks not directly connected.",
+    "objective": "Topology documentation and endpoint inventory",
+    "activity": "Produce device-node and link map",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH02-M10",
+    "question": "A host has 192.168.20.15/24 while its server is 192.168.21.20/24. What is needed?",
+    "choices": [
+      "A route via an appropriate router",
+      "Only a different browser",
+      "A longer Ethernet cable fixes addressing"
+    ],
+    "answer_index": 0,
+    "explanation": "Different /24 networks require routing between them.",
+    "objective": "Combined layer-2 and IP investigation",
+    "activity": "Find incorrectly placed simulated network endpoint",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH03-M01",
+    "question": "Where does the OSI model place TCP?",
+    "choices": [
+      "Physical layer",
+      "Transport layer",
+      "Presentation layer"
+    ],
+    "answer_index": 1,
+    "explanation": "TCP is a transport-layer protocol in the OSI conceptual model.",
+    "objective": "OSI and TCP-IP mapping",
+    "activity": "Match packet functions to layers",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH03-M02",
+    "question": "What is encapsulation in networking?",
+    "choices": [
+      "Compressing files into ZIP archives only",
+      "Removing all addresses from packets",
+      "Adding protocol headers around data as it moves down a stack"
+    ],
+    "answer_index": 2,
+    "explanation": "Layered encapsulation enables different network responsibilities.",
+    "objective": "Frames, packets, segments and headers",
+    "activity": "Animate source-to-destination encapsulation",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH03-M03",
+    "question": "What combination commonly identifies a TCP endpoint?",
+    "choices": [
+      "IP address and port number",
+      "Monitor resolution and username",
+      "MAC address and browser theme"
+    ],
+    "answer_index": 0,
+    "explanation": "A socket endpoint is described by protocol, IP address and port.",
+    "objective": "Sockets and service port concepts",
+    "activity": "Match service sessions to endpoints",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH03-M04",
+    "question": "Which statement about UDP is correct?",
+    "choices": [
+      "UDP always uses a three-way handshake",
+      "UDP is connectionless and provides no built-in delivery guarantee",
+      "UDP encrypts all data by default"
+    ],
+    "answer_index": 1,
+    "explanation": "Applications requiring reliability over UDP must provide it separately.",
+    "objective": "TCP and UDP characteristics",
+    "activity": "Select transport characteristics for cases",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH03-M05",
+    "question": "Which sequence describes a TCP three-way handshake?",
+    "choices": [
+      "ACK, ACK, SYN",
+      "DNS, DHCP, ARP",
+      "SYN, SYN-ACK, ACK"
+    ],
+    "answer_index": 2,
+    "explanation": "A TCP connection is established with SYN, SYN-ACK and ACK.",
+    "objective": "SYN, SYN-ACK, ACK and sequence logic",
+    "activity": "Reassemble simulated TCP establishment",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH03-M06",
+    "question": "What is the normal purpose of a DNS A record?",
+    "choices": [
+      "Map a hostname to an IPv4 address",
+      "Assign a MAC address to a switch",
+      "Select the Ethernet MTU"
+    ],
+    "answer_index": 0,
+    "explanation": "DNS A records return IPv4 addresses for domain names.",
+    "objective": "DNS query/answer types and caching",
+    "activity": "Trace a synthetic domain lookup",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH03-M07",
+    "question": "What does DHCP usually provide to a client?",
+    "choices": [
+      "A website's HTML source",
+      "Automatic IP configuration",
+      "Permanent protection against malware"
+    ],
+    "answer_index": 1,
+    "explanation": "DHCP can supply IP, subnet mask, gateway and DNS server settings.",
+    "objective": "DHCP lifecycle and lease basics",
+    "activity": "Investigate a simulated lease exchange",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH03-M08",
+    "question": "What does ARP resolve on a typical IPv4 LAN?",
+    "choices": [
+      "Domain name to webpage title",
+      "Hash to original password",
+      "IPv4 address to link-layer MAC address"
+    ],
+    "answer_index": 2,
+    "explanation": "ARP determines the target MAC for local IPv4 delivery.",
+    "objective": "ARP request/response on local segments",
+    "activity": "Diagnose a simulated ARP mapping issue",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH03-M09",
+    "question": "Why is HTTPS preferable to ordinary HTTP for sensitive traffic?",
+    "choices": [
+      "TLS protects application data in transit",
+      "HTTPS hides all IP addresses from every observer",
+      "HTTPS prevents all vulnerabilities"
+    ],
+    "answer_index": 0,
+    "explanation": "TLS protects data in transit but does not eliminate metadata or application flaws.",
+    "objective": "HTTP, HTTPS and TLS overview",
+    "activity": "Compare visible metadata across two sessions",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH03-M10",
+    "question": "A browser resolves a domain then opens HTTPS. What usually occurs first?",
+    "choices": [
+      "A filesystem format operation",
+      "DNS resolution before connecting to the destination IP",
+      "A password hash audit"
+    ],
+    "answer_index": 1,
+    "explanation": "Name resolution generally precedes establishing a connection to a hostname.",
+    "objective": "Correlate DNS, ARP, TCP and DHCP records",
+    "activity": "Reconstruct a synthetic protocol timeline",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH04-M01",
+    "question": "What happens when a host sends to an IP outside its directly connected network?",
+    "choices": [
+      "It must ask a printer for permission",
+      "It broadcasts the packet globally to all routers",
+      "It typically forwards to a configured router"
+    ],
+    "answer_index": 2,
+    "explanation": "The routing table determines the next hop, often the default gateway.",
+    "objective": "Local versus off-subnet forwarding",
+    "activity": "Route packets through a gateway exercise",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH04-M02",
+    "question": "What does a routing table contain?",
+    "choices": [
+      "Destination prefixes and next-hop or interface information",
+      "Installed web browser themes",
+      "Passwords for all neighboring routers"
+    ],
+    "answer_index": 0,
+    "explanation": "Routers and hosts consult routes to select the outgoing path.",
+    "objective": "Longest-prefix-match and routing tables",
+    "activity": "Select routes from a synthetic table",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH04-M03",
+    "question": "What is a common purpose of source NAT?",
+    "choices": [
+      "Encrypt files on disk",
+      "Translate private source addresses for traffic leaving a network",
+      "Replace Ethernet with Wi-Fi"
+    ],
+    "answer_index": 1,
+    "explanation": "NAT rewrites address/port information; it is not itself encryption.",
+    "objective": "NAT and address translation",
+    "activity": "Trace a simulated translated flow",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH04-M04",
+    "question": "What can traceroute help reveal?",
+    "choices": [
+      "The exact physical location of every user",
+      "The plaintext of TLS connections",
+      "Intermediate network hops that respond along a path"
+    ],
+    "answer_index": 2,
+    "explanation": "Traceroute uses TTL or hop-limit effects and responses; some hops may not answer.",
+    "objective": "TTL, traceroute, path uncertainty",
+    "activity": "Read supplied traceroute outputs",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH04-M05",
+    "question": "What does ICMP Time Exceeded indicate in traceroute?",
+    "choices": [
+      "A packet's hop limit expired at a router",
+      "The destination's password expired",
+      "The browser ran out of memory"
+    ],
+    "answer_index": 0,
+    "explanation": "Routers may send ICMP Time Exceeded when a TTL reaches zero.",
+    "objective": "ICMP error and diagnostic purposes",
+    "activity": "Explain synthetic ICMP results",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH04-M06",
+    "question": "What is packet loss?",
+    "choices": [
+      "A reduction in monitor brightness",
+      "Expected packets not successfully delivered or observed",
+      "The number of files in a directory"
+    ],
+    "answer_index": 1,
+    "explanation": "Loss, delay, and jitter help characterize network quality.",
+    "objective": "Latency, jitter, loss and measurement limits",
+    "activity": "Inspect controlled trace metrics",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH04-M07",
+    "question": "A host reaches 192.168.3.1 but not a server behind it. Which check is useful?",
+    "choices": [
+      "Change the wallpaper",
+      "Delete every log file",
+      "Inspect routes and connectivity beyond the gateway"
+    ],
+    "answer_index": 2,
+    "explanation": "The next hop may be reachable even while downstream routing fails.",
+    "objective": "Routing mistakes and recovery",
+    "activity": "Repair a misconfigured route in simulation",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH04-M08",
+    "question": "DNS lookup fails but connecting to a known IP works. What is a likely area to investigate?",
+    "choices": [
+      "DNS resolver configuration",
+      "Keyboard layout",
+      "CPU fan speed"
+    ],
+    "answer_index": 0,
+    "explanation": "Successful IP connectivity with failed hostname lookups points to name resolution.",
+    "objective": "DNS versus routing fault isolation",
+    "activity": "Investigate two failure reports",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH04-M09",
+    "question": "Why shouldn't you treat every traceroute asterisk as a failed route?",
+    "choices": [
+      "Each asterisk proves malware",
+      "Some routers suppress or rate-limit probe responses",
+      "Traceroute encrypts all hops"
+    ],
+    "answer_index": 1,
+    "explanation": "A lack of reply can reflect ICMP filtering while forwarding still works.",
+    "objective": "Correlating independent route observations",
+    "activity": "Compare several synthetic paths",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH04-M10",
+    "question": "Which finding best supports a network-routing incident report?",
+    "choices": [
+      "Only a guess from a single screenshot",
+      "One unexplained star in traceroute",
+      "Matched route tables, timestamps and reproducible diagnostics"
+    ],
+    "answer_index": 2,
+    "explanation": "Multiple consistent observations improve confidence and reduce overclaiming.",
+    "objective": "Integrated diagnostics and time correlation",
+    "activity": "Resolve a deceptive route incident case",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH05-M01",
+    "question": "What is a packet capture file used for?",
+    "choices": [
+      "Reviewing recorded network traffic",
+      "Installing operating-system drivers",
+      "Automatically decrypting all encrypted data"
+    ],
+    "answer_index": 0,
+    "explanation": "Captures contain observed frames or packets for later inspection.",
+    "objective": "Capture ethics, payload versus metadata",
+    "activity": "Inspect simulated protocol layers",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH05-M02",
+    "question": "Which file format commonly stores packet captures?",
+    "choices": [
+      "DOCX",
+      "PCAPNG",
+      "MP3"
+    ],
+    "answer_index": 1,
+    "explanation": "Wireshark commonly opens .pcap and .pcapng capture files.",
+    "objective": "PCAP and PCAPNG navigation",
+    "activity": "Open the supplied offline capture",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M03",
+    "question": "Where is a packet's IPv4 source address stored?",
+    "choices": [
+      "In the Ethernet CRC only",
+      "In the image metadata of the desktop",
+      "In its IPv4 header"
+    ],
+    "answer_index": 2,
+    "explanation": "IPv4 headers identify source and destination IP addresses.",
+    "objective": "Ethernet, IP, TCP/UDP header fields",
+    "activity": "Find fields in an annotated capture",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M04",
+    "question": "Which Wireshark display filter selects DNS packets?",
+    "choices": [
+      "dns",
+      "select * from dns",
+      "grep -r dns /"
+    ],
+    "answer_index": 0,
+    "explanation": "Wireshark display filters use protocol field names such as dns.",
+    "objective": "Wireshark display filter fundamentals",
+    "activity": "Filter a provided synthetic capture",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M05",
+    "question": "What does the query name in a DNS request represent?",
+    "choices": [
+      "The CPU model of the requesting machine",
+      "The domain name the client is asking about",
+      "The server's administrator password"
+    ],
+    "answer_index": 1,
+    "explanation": "dns.qry.name identifies the requested name.",
+    "objective": "DNS records and transaction matching",
+    "activity": "Find DNS request-response pair",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M06",
+    "question": "What does a broadcast ARP request commonly ask?",
+    "choices": [
+      "Who owns a public TLS certificate?",
+      "Which HTTP cookie expires tomorrow?",
+      "Who has a particular IPv4 address?"
+    ],
+    "answer_index": 2,
+    "explanation": "ARP requests find the MAC address corresponding to a local IP.",
+    "objective": "ARP analysis and mapping",
+    "activity": "Identify ARP exchange in sample capture",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M07",
+    "question": "Which TCP flag normally starts a connection attempt?",
+    "choices": [
+      "SYN",
+      "FIN",
+      "RST"
+    ],
+    "answer_index": 0,
+    "explanation": "A client normally sends SYN to initiate a TCP connection.",
+    "objective": "Connection setup, retransmissions",
+    "activity": "Trace a supplied TCP conversation",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M08",
+    "question": "Can a normal passive capture always show the plaintext of HTTPS requests?",
+    "choices": [
+      "Yes, every HTTPS packet is plain text",
+      "No, TLS normally encrypts application payloads",
+      "No capture can ever show IP addresses"
+    ],
+    "answer_index": 1,
+    "explanation": "Packet metadata may remain observable even when TLS encrypts the payload.",
+    "objective": "TLS and HTTP observability",
+    "activity": "Compare synthetic plaintext and encrypted flows",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH05-M09",
+    "question": "What is a defensible statement when investigating a suspicious DNS query?",
+    "choices": [
+      "The request proves a person committed a crime",
+      "The request guarantees a malware infection",
+      "The capture shows a host requested a name at a time"
+    ],
+    "answer_index": 2,
+    "explanation": "Evidence should be described without inferring intent unsupported by the capture.",
+    "objective": "Correlating packet timestamps and streams",
+    "activity": "Create traffic timeline from fixture",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH05-M10",
+    "question": "Why should a packet analyst preserve the original capture file?",
+    "choices": [
+      "To maintain an auditable source of evidence",
+      "To increase the packet count automatically",
+      "To bypass all authorization rules"
+    ],
+    "answer_index": 0,
+    "explanation": "Preserving originals supports integrity and repeatable analysis.",
+    "objective": "Formal analysis of omitted capture evidence",
+    "activity": "Write packet-based case report",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH06-M01",
+    "question": "What is the purpose of network reconnaissance during an authorized audit?",
+    "choices": [
+      "Obtain every user's password",
+      "Discover and document in-scope hosts and services",
+      "Disable unknown networks"
+    ],
+    "answer_index": 1,
+    "explanation": "Discovery provides an inventory for defensive assessment.",
+    "objective": "Discovery versus exploitation",
+    "activity": "Interpret safe host/service inventory",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH06-M02",
+    "question": "What should be agreed before scanning a network?",
+    "choices": [
+      "A favorite terminal color",
+      "A social-media handle",
+      "Authorized target scope and testing rules"
+    ],
+    "answer_index": 2,
+    "explanation": "Explicit permission and scope determine which actions are legitimate.",
+    "objective": "Permission, lab range, prohibited targets",
+    "activity": "Review signed fictional assessment scope",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH06-M03",
+    "question": "What does host discovery attempt to establish?",
+    "choices": [
+      "Whether a target appears reachable",
+      "Whether a password is strong",
+      "Whether the web server is written in Python"
+    ],
+    "answer_index": 0,
+    "explanation": "A nonresponse may also reflect firewall filtering.",
+    "objective": "Nmap host discovery concepts",
+    "activity": "Review or run lab-approved discovery",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH06-M04",
+    "question": "What does a TCP connect scan do?",
+    "choices": [
+      "Automatically exploit every open port",
+      "Attempts TCP connections to selected ports",
+      "Read encrypted web sessions"
+    ],
+    "answer_index": 1,
+    "explanation": "TCP connect scanning observes whether connection attempts succeed.",
+    "objective": "TCP connect-scanning concepts",
+    "activity": "Run bounded approved TCP connect assessment",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH06-M05",
+    "question": "What does Nmap report as an open TCP port?",
+    "choices": [
+      "The service is certainly vulnerable",
+      "The device uses unencrypted Wi-Fi",
+      "A service accepted or appeared to accept a connection"
+    ],
+    "answer_index": 2,
+    "explanation": "Open means reachable, not necessarily insecure.",
+    "objective": "Nmap state semantics and uncertainty",
+    "activity": "Classify supplied scan outputs",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH06-M06",
+    "question": "What does service detection help identify?",
+    "choices": [
+      "Possible service names and versions",
+      "Every process's memory contents",
+      "All deleted server files"
+    ],
+    "answer_index": 0,
+    "explanation": "Detection may infer services from responses and can be wrong.",
+    "objective": "Banners and service uncertainty",
+    "activity": "Analyze controlled service-identification output",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH06-M07",
+    "question": "Why can UDP results be ambiguous?",
+    "choices": [
+      "UDP always guarantees a response",
+      "Missing responses can mean filtered or open ports",
+      "UDP has built-in TCP acknowledgments"
+    ],
+    "answer_index": 1,
+    "explanation": "Many UDP applications do not respond to unsolicited probes.",
+    "objective": "UDP ambiguity and closed/filtered uncertainty",
+    "activity": "Inspect supplied UDP result examples",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH06-M08",
+    "question": "Which output is suitable for a program to parse Nmap findings?",
+    "choices": [
+      "An unlabeled screenshot",
+      "A random log title",
+      "XML via -oX"
+    ],
+    "answer_index": 2,
+    "explanation": "Nmap XML is structured and documented for machine use.",
+    "objective": "Nmap XML schema and evidence handling",
+    "activity": "Parse a provided XML scan report",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH06-M09",
+    "question": "If a scan shows TCP port 443 open, what can you conclude?",
+    "choices": [
+      "A TCP listener appears reachable on 443",
+      "Credentials were stolen",
+      "TLS configuration is automatically flawless"
+    ],
+    "answer_index": 0,
+    "explanation": "Discovery is only an initial observation; further authorized checks are needed.",
+    "objective": "Risk triage and verification",
+    "activity": "Classify observations from approved service scan",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH06-M10",
+    "question": "What belongs in a responsible service exposure report?",
+    "choices": [
+      "Unsupported declarations of compromise",
+      "Target, scope, ports, method, evidence, and uncertainty",
+      "Personal opinions without observations"
+    ],
+    "answer_index": 1,
+    "explanation": "An auditable report distinguishes findings from assumptions.",
+    "objective": "Scoped service-exposure assessment",
+    "activity": "Produce bounded local asset/security inventory",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH07-M01",
+    "question": "How does authorization differ from authentication?",
+    "choices": [
+      "They are identical in all systems",
+      "Authorization verifies a user's keyboard",
+      "Authorization determines permitted actions; authentication establishes identity"
+    ],
+    "answer_index": 2,
+    "explanation": "Identity verification and access rights are related but distinct.",
+    "objective": "Authentication, authorization and sessions",
+    "activity": "Compare account access scenarios",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH07-M02",
+    "question": "Which password is generally weaker?",
+    "choices": [
+      "Summer2026!",
+      "Randomly generated 18-character passphrase",
+      "Unique manager-generated 24-character password"
+    ],
+    "answer_index": 0,
+    "explanation": "Predictable patterns can appear in password dictionaries and guessing rules.",
+    "objective": "Entropy misconceptions and common patterns",
+    "activity": "Evaluate fictitious password examples",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH07-M03",
+    "question": "What does a cryptographic hash function produce?",
+    "choices": [
+      "A reversible encrypted copy by definition",
+      "A fixed-length digest of input data",
+      "A network IP address"
+    ],
+    "answer_index": 1,
+    "explanation": "Hashes are one-way primitives, not a substitute for encryption.",
+    "objective": "Hashing versus encryption and verification",
+    "activity": "Match sample hash verification steps",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH07-M04",
+    "question": "What is a salt in password hashing?",
+    "choices": [
+      "A shared master password",
+      "The username written in plain text",
+      "A unique random value included before hashing"
+    ],
+    "answer_index": 2,
+    "explanation": "Unique salts prevent identical passwords from producing identical stored hashes.",
+    "objective": "Salting, KDF work factors and password storage",
+    "activity": "Inspect synthetic hash metadata",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH07-M05",
+    "question": "What should a password-audit training lab use?",
+    "choices": [
+      "Synthetic hashes created specifically for training",
+      "Real employees' password databases",
+      "Credentials found online without permission"
+    ],
+    "answer_index": 0,
+    "explanation": "Synthetic credentials allow safe and repeatable learning.",
+    "objective": "Synthetic training hashes and scope",
+    "activity": "Load provided fictional hashes",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH07-M06",
+    "question": "What is John the Ripper designed to help assess?",
+    "choices": [
+      "How to assign IP addresses with DHCP",
+      "Whether authorized password hashes correspond to weak guesses",
+      "How to intercept TLS by default"
+    ],
+    "answer_index": 1,
+    "explanation": "John audits password resistance; its abilities depend on supported hash formats.",
+    "objective": "John interface and safe audit workflows",
+    "activity": "Read tool help and supplied synthetic fixture",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH07-M07",
+    "question": "What is the purpose of a small lab wordlist?",
+    "choices": [
+      "Discover live people on Wi-Fi",
+      "Bypass authorization",
+      "Test a defined set of candidate passwords against synthetic hashes"
+    ],
+    "answer_index": 2,
+    "explanation": "A wordlist contains candidates; a match demonstrates weakness in that controlled example.",
+    "objective": "Dictionary-based weak-password auditing",
+    "activity": "Audit pre-generated weak local hashes with supplied wordlist",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH07-M08",
+    "question": "What does a successful controlled password audit prove?",
+    "choices": [
+      "A particular test password was found among attempted candidates",
+      "Every account using the same algorithm is compromised",
+      "Passwords cannot be secured"
+    ],
+    "answer_index": 0,
+    "explanation": "One weak training password demonstrates a risk, not universal compromise.",
+    "objective": "What successful or unsuccessful audit proves",
+    "activity": "Interpret controlled run output",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH07-M09",
+    "question": "Which control strengthens account security beyond passwords?",
+    "choices": [
+      "Sharing passwords by email",
+      "Multi-factor authentication",
+      "Using the same password on all sites"
+    ],
+    "answer_index": 1,
+    "explanation": "MFA adds an additional factor and can reduce the impact of stolen passwords.",
+    "objective": "Long unique passwords, MFA, rate limits, secure hashing",
+    "activity": "Propose mitigations for fictional system",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH07-M10",
+    "question": "A synthetic credential was recovered from a training wordlist. What should an investigator report?",
+    "choices": [
+      "That the real organization was breached",
+      "Every hash can be inverted",
+      "The lab credential was weak and recommend stronger password storage and MFA"
+    ],
+    "answer_index": 2,
+    "explanation": "Keep conclusions restricted to the controlled test evidence.",
+    "objective": "Credential security incident reconstruction",
+    "activity": "Complete permitted synthetic audit report",
+    "mode": "capstone"
+  }
+]

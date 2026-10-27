@@ -1,0 +1,422 @@
+[
+  {
+    "mission_id": "CH08-M01",
+    "question": "In a normal HTTPS browser request, which component sends the HTTP request?",
+    "choices": [
+      "The web browser acting as client",
+      "The DNS server acting as web server",
+      "The Ethernet switch acting as HTTP client"
+    ],
+    "answer_index": 0,
+    "explanation": "The browser is the HTTP client; the server responds. DNS may resolve the name but does not issue the web request.",
+    "objective": "Client-server HTTP roles and TLS",
+    "activity": "Trace browser to service request flow",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH08-M02",
+    "question": "Which response status most directly means a requested resource was not found?",
+    "choices": [
+      "201 Created",
+      "404 Not Found",
+      "302 Found"
+    ],
+    "answer_index": 1,
+    "explanation": "HTTP 404 indicates the server did not find the requested target resource.",
+    "objective": "HTTP methods, statuses, URLs and bodies",
+    "activity": "Inspect saved HTTP exchanges",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH08-M03",
+    "question": "Which header tells a client the response representation is JSON?",
+    "choices": [
+      "Content-Type: application/json",
+      "Host: application/json",
+      "Server: POST"
+    ],
+    "answer_index": 0,
+    "explanation": "The Content-Type response header describes the media type. Host is a request target header.",
+    "objective": "Headers, content types and origin boundaries",
+    "activity": "Compare safe local request headers",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH08-M04",
+    "question": "Why should a session cookie use the HttpOnly attribute when feasible?",
+    "choices": [
+      "To prevent the cookie from ever being sent",
+      "To keep JavaScript from reading the cookie",
+      "To encrypt all packets automatically"
+    ],
+    "answer_index": 1,
+    "explanation": "HttpOnly limits access from client-side JavaScript, but does not replace TLS or authorization checks.",
+    "objective": "Session identifiers, cookies, cookie attributes",
+    "activity": "Investigate a simulated session lifecycle",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH08-M05",
+    "question": "What does an intercepting HTTP proxy do in an authorized lab?",
+    "choices": [
+      "It observes or forwards the browser requests routed through it",
+      "It automatically compromises remote networks",
+      "It replaces DNS for every computer"
+    ],
+    "answer_index": 0,
+    "explanation": "An intercepting proxy sits between a configured client and server, enabling inspection and manual changes to requests.",
+    "objective": "HTTP proxy mechanics and scoping",
+    "activity": "Trace request via local proxy",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH08-M06",
+    "question": "What is the correct Burp Suite target for this exercise?",
+    "choices": [
+      "Any reachable public service",
+      "The loopback training portal explicitly started for NULLTRACE",
+      "Your university login portal"
+    ],
+    "answer_index": 1,
+    "explanation": "Practice only against the bounded NULLTRACE training portal on localhost.",
+    "objective": "Burp Community proxy setup",
+    "activity": "Intercept request to own loopback training app",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH08-M07",
+    "question": "What is Burp Repeater primarily used for?",
+    "choices": [
+      "Sending controlled variations of an HTTP request for comparison",
+      "Capturing raw Wi-Fi radio frames",
+      "Cracking password hashes offline"
+    ],
+    "answer_index": 0,
+    "explanation": "Repeater sends individual HTTP requests repeatedly so the analyst can compare responses.",
+    "objective": "Manual safe HTTP Repeater analysis",
+    "activity": "Change harmless test parameter in local app",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH08-M08",
+    "question": "A test API lets user A read user B's fictitious record by changing only an object ID. What is the likely issue?",
+    "choices": [
+      "Missing object-level authorization",
+      "A DNS resolver outage",
+      "A harmless content-type mismatch"
+    ],
+    "answer_index": 0,
+    "explanation": "If object access is not checked for the requesting principal, an insecure direct object reference or related access-control flaw may exist.",
+    "objective": "Object-level authorization fundamentals",
+    "activity": "Identify a deliberate local training weakness",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH08-M09",
+    "question": "Which fix best addresses a user reading another user's record by changing a URL parameter?",
+    "choices": [
+      "Hide the parameter in the UI",
+      "Check object-level permissions on the server for every request",
+      "Only rename the record ID"
+    ],
+    "answer_index": 1,
+    "explanation": "Server-side per-object authorization must be enforced; changing the UI or identifier format is insufficient.",
+    "objective": "Authorization validation and session hardening",
+    "activity": "Patch or select mitigations in simulated server",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH08-M10",
+    "question": "A defensible web-lab report must distinguish which two things?",
+    "choices": [
+      "An observed HTTP response and a proven real-world impact",
+      "A browser color theme and its font size",
+      "An operator alias and password length"
+    ],
+    "answer_index": 0,
+    "explanation": "Report exactly what the controlled request demonstrates, alongside the limits and applicable mitigation.",
+    "objective": "End-to-end local web security assessment",
+    "activity": "Write web investigation report with requests/responses",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH09-M01",
+    "question": "Which sequence best describes a typical incident-response lifecycle?",
+    "choices": [
+      "Prepare, detect/analyze, contain, eradicate/recover, learn",
+      "Delete all logs, guess an attacker, restart everything",
+      "Scan broadly, publish secrets, then ask permission"
+    ],
+    "answer_index": 0,
+    "explanation": "Incident response starts with preparation and evidence-based analysis, followed by proportionate containment and recovery.",
+    "objective": "Preparation, detection, containment, lessons learned",
+    "activity": "Sequence an incident-response plan",
+    "mode": "lesson"
+  },
+  {
+    "mission_id": "CH09-M02",
+    "question": "When two log sources disagree about an event, what should an analyst do first?",
+    "choices": [
+      "Discard whichever log is older",
+      "Check clocks, time zones, collection sources, and integrity",
+      "Declare both records fabricated"
+    ],
+    "answer_index": 1,
+    "explanation": "Log provenance and time normalization must be checked before attributing differences to malicious editing.",
+    "objective": "Events and logs across systems",
+    "activity": "Review provided multi-system logs",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M03",
+    "question": "What does a SHA-256 digest of a stored case file primarily support?",
+    "choices": [
+      "Integrity comparison for a known reference file",
+      "Proof that the file is truthful",
+      "Proof of the attacker's identity"
+    ],
+    "answer_index": 0,
+    "explanation": "A digest helps detect changes but cannot by itself establish accuracy, authorship, or chain of custody.",
+    "objective": "Hashes, chain of custody, minimal handling",
+    "activity": "Record fixture identity and provenance",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH09-M04",
+    "question": "One system reports 03:15 UTC and another 06:15 at UTC+3. What is the relationship?",
+    "choices": [
+      "They are three hours apart",
+      "They indicate the same instant",
+      "Neither time can be compared"
+    ],
+    "answer_index": 1,
+    "explanation": "06:15 at UTC+3 is 03:15 UTC; normalize time zones before reconstructing an incident timeline.",
+    "objective": "Time zones, ordering, clock drift",
+    "activity": "Normalize event timestamps in supplied logs",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M05",
+    "question": "A packet capture shows outbound DNS, while a host log shows a new process. What can you safely conclude?",
+    "choices": [
+      "The process definitely issued the query",
+      "The observations are potentially related but need correlation",
+      "The router caused the host process"
+    ],
+    "answer_index": 1,
+    "explanation": "Temporal proximity alone does not prove the process caused the DNS query; correlate process IDs, sockets, and timestamps.",
+    "objective": "Correlating PCAP and host events",
+    "activity": "Link capture with host process events",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M06",
+    "question": "A Nmap report shows TCP port 443 open. Which claim is justified?",
+    "choices": [
+      "A service was reachable on TCP 443 during the scan",
+      "The server was definitely compromised",
+      "TLS encryption was broken"
+    ],
+    "answer_index": 0,
+    "explanation": "An open port establishes reachability to a listener, not exploitability or compromise.",
+    "objective": "Inventory versus actual compromise",
+    "activity": "Compare Nmap XML with incident artifacts",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M07",
+    "question": "What is a sensible way to link a sanitized HTTP log with an incident timeline?",
+    "choices": [
+      "Use timestamp, endpoint, request ID, and source context",
+      "Assume every 403 response is an intrusion",
+      "Use cookie values as publicly shared evidence"
+    ],
+    "answer_index": 0,
+    "explanation": "Combine timestamps and non-sensitive identifiers; avoid unnecessary disclosure of real session tokens.",
+    "objective": "HTTP logs, session metadata and sequence",
+    "activity": "Correlate sanitized request logs",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M08",
+    "question": "An anomaly could be a backup job or an intrusion. What should a report say?",
+    "choices": [
+      "An intrusion is confirmed",
+      "Both explanations are hypotheses pending corroboration",
+      "Backups are always malicious"
+    ],
+    "answer_index": 1,
+    "explanation": "When evidence permits multiple explanations, report uncertainty and seek discriminating evidence.",
+    "objective": "False positives, plausible alternatives",
+    "activity": "Evaluate two evidence-supported hypotheses",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M09",
+    "question": "Which format makes an incident report auditable?",
+    "choices": [
+      "Claim, supporting evidence, limitation, recommended action",
+      "Dramatic allegation without evidence",
+      "Only tool output copied verbatim"
+    ],
+    "answer_index": 0,
+    "explanation": "A strong report separates observations from inference and records uncertainty and next steps.",
+    "objective": "Writing structured incident reports",
+    "activity": "Produce executive summary plus technical evidence",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH09-M10",
+    "question": "A summary omits a packet that limits its attribution claim. What is the best action?",
+    "choices": [
+      "Preserve both sources and document the omission",
+      "Change the packet capture to match the summary",
+      "Publish personal information immediately"
+    ],
+    "answer_index": 0,
+    "explanation": "Maintain original evidence and document discrepancies without altering or overstating findings.",
+    "objective": "Integrated full-case response",
+    "activity": "Reconstruct case and identify manipulated records",
+    "mode": "capstone"
+  },
+  {
+    "mission_id": "CH10-M01",
+    "question": "Before investigating MIRROR-related systems, what must the final team establish?",
+    "choices": [
+      "Scope, authority, preservation requirements, and a review plan",
+      "A list of random Internet hosts",
+      "Permission to bypass every policy"
+    ],
+    "answer_index": 0,
+    "explanation": "Clearly scoped authorization and preservation rules protect systems and evidence.",
+    "objective": "Investigation authorization and plan",
+    "activity": "Scope the final evidence review",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH10-M02",
+    "question": "A diagram includes a workstation, gateway, and application server. What evidence best verifies a cross-subnet route?",
+    "choices": [
+      "Router path and interface configurations corroborated by observations",
+      "Matching icon colors",
+      "A username matching the host label"
+    ],
+    "answer_index": 0,
+    "explanation": "Infrastructure mapping combines recorded configurations with limited verified network observations.",
+    "objective": "Multi-layer infrastructure topology",
+    "activity": "Reconstruct relevant infrastructure model",
+    "mode": "simulation"
+  },
+  {
+    "mission_id": "CH10-M03",
+    "question": "Which conclusion is justified by a DNS query in a supplied PCAP?",
+    "choices": [
+      "A device queried a name at the recorded time",
+      "The user read the website contents",
+      "The DNS operator knows the user's physical address"
+    ],
+    "answer_index": 0,
+    "explanation": "A DNS packet establishes query information, not application content or physical location.",
+    "objective": "Independent traffic analysis",
+    "activity": "Analyze supplied PCAPNG artifacts",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH10-M04",
+    "question": "A synthetic Nmap XML file shows a filtered port. How should it be reported?",
+    "choices": [
+      "The scan could not determine whether the port was open because traffic was filtered",
+      "The service was proven exploitable",
+      "The port is conclusively closed"
+    ],
+    "answer_index": 0,
+    "explanation": "Filtered means probes could not resolve the port state due to filtering or lack of response.",
+    "objective": "Interpreting recorded authorized scans",
+    "activity": "Analyze synthetic Nmap XML findings",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH10-M05",
+    "question": "A tiny dictionary finds a test MD5-crypt password. What is the most defensible conclusion?",
+    "choices": [
+      "The deliberately weak sample was recoverable in the training conditions",
+      "All password hashing is reversible",
+      "Every real account uses the same password"
+    ],
+    "answer_index": 0,
+    "explanation": "A controlled demonstration proves this one synthetic weak sample is vulnerable to the tested method.",
+    "objective": "Password-security conclusions",
+    "activity": "Interpret synthetic John audit evidence",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH10-M06",
+    "question": "The local MIRROR portal leaks a fictional record without an object permission check. What is the needed control?",
+    "choices": [
+      "Server-side object authorization",
+      "A darker page theme",
+      "Client-side hiding of the request"
+    ],
+    "answer_index": 0,
+    "explanation": "The server must check whether the requesting principal may access each record.",
+    "objective": "Session and access-control evaluation",
+    "activity": "Inspect local test app with Burp Community",
+    "mode": "lab"
+  },
+  {
+    "mission_id": "CH10-M07",
+    "question": "Two independently preserved records contradict an official narrative. What should the analyst do?",
+    "choices": [
+      "Correlate provenance and document the contradiction and its uncertainty",
+      "Overwrite one record so the report looks consistent",
+      "Treat contradiction itself as proof of intent"
+    ],
+    "answer_index": 0,
+    "explanation": "A discrepancy is a finding to investigate, not automatically proof of intentional manipulation.",
+    "objective": "Cross-source evidence validation",
+    "activity": "Compare logs, packets and reports",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH10-M08",
+    "question": "What makes a final evidence chain reproducible?",
+    "choices": [
+      "Immutable originals, hashes, cited timestamps and described methods",
+      "A confident verbal summary only",
+      "Unrecorded edits to the source files"
+    ],
+    "answer_index": 0,
+    "explanation": "A reproducible dossier identifies originals and processes, enabling another analyst to check findings.",
+    "objective": "Final evidence and incident timeline",
+    "activity": "Produce comprehensive structured case record",
+    "mode": "investigation"
+  },
+  {
+    "mission_id": "CH10-M09",
+    "question": "How should a responsible disclosure decision balance safety and accountability?",
+    "choices": [
+      "Minimize unrelated personal-data exposure and preserve evidence while seeking independent review",
+      "Publish every captured credential",
+      "Suppress all findings regardless of harm"
+    ],
+    "answer_index": 0,
+    "explanation": "Disclosure should be proportional and protect bystanders while enabling accountability.",
+    "objective": "Ethics, privacy, public interest, continuity",
+    "activity": "Choose disclosure route and justify safeguards",
+    "mode": "decision"
+  },
+  {
+    "mission_id": "CH10-M10",
+    "question": "What is the most defensible final NULLTRACE conclusion?",
+    "choices": [
+      "Separate observations, corroborated findings, uncertainty, and recommended safeguards",
+      "Claim a single packet proves the entire conspiracy",
+      "Treat technical tests as equivalent to legal judgments"
+    ],
+    "answer_index": 0,
+    "explanation": "The final investigation must explain exactly what evidence supports and what remains unknown.",
+    "objective": "All competency domains, integrated capstone",
+    "activity": "Complete final integrated case and ending",
+    "mode": "capstone"
+  }
+]
